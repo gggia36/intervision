@@ -1,0 +1,605 @@
+<style type="text/css">
+    body{
+/*  font-family:"Open Sans",sans;
+  background: radial-gradient(#fff, #aaa);
+  background-size: 100vw 100vh; 
+  overflow: hidden;
+  text-align: center;*/
+}
+.active{
+  color: #1262a1;
+}
+.toggle-section{
+    display: flex;
+    align-items: center;
+}
+/*.toggle-section h5{
+    margin: 0;
+}
+.toggle-section h5.active{
+    color: #1262a1;
+}*/
+</style>
+
+<div class="preloader">
+    <div class="load_section">
+        <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+
+<div id="main-wrapper">
+    <section id="header" class="hidden-xs hidden-sm">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2" id="logo">
+                    <a href="<?=$WEBURL?>">
+                        <img src="<?=$BASEURL?>/assets/images/logo.png" alt="Intervision Logo" />
+                    </a>
+                </div>
+
+                <div class="col-md-8" id="menu">
+                    <div class="row">
+                        <div class="col-sm-12 g-px-150--md g-px-80--lg" id="main-menu">
+                            <!-- Collect the nav links, forms, and other content for toggling -->
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul id="menu_main" class="nav navbar-nav navbar-right">
+                                    <li class="menu_items penci-mega-menu">
+                                        <a href="javascript:;"> <?=$lang['label_services']?> <i class="fa fa-angle-down ic_default_menu" aria-hidden="true"></i><i class="fa fa-angle-up ic_active_menu" aria-hidden="true"></i> </a>
+                                        <ul class="subs-menu">
+                                            <div class="container-fluid sub_content_menu">
+                                                <a href="<?=$WEBURL?>/services/1/Digital-Transformation-Consultant-Service">
+                                                    <div class="col-sm-4 col-md-4 col-lg-3 sub_content_list g-my-30 g-text-hover-1">
+                                                        <div class="col-md-2 img_sub_menu">
+                                                            <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_1.png" class="ic_sub_default" alt="Digital Transformation Consultant Service Menu Icon 1" />
+                                                            <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_1_active.png" class="ic_sub_active" alt="Digital Transformation Consultant Service Menu Icon 2" />
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <p class="sub_text_head_menu">
+                                                                Digital Transformation<br />
+                                                                Consultant Service
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+
+                                                <a href="<?=$WEBURL?>/services/2/web-development-for-branding">
+                                                    <div class="col-sm-4 col-md-4 col-lg-3 sub_content_list g-my-30 g-text-hover-2">
+                                                        <div class="col-md-2 img_sub_menu">
+                                                            <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_2.png" class="ic_sub_default" alt="Web Development for Branding Menu Icon 1" />
+                                                            <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_2_active.png" class="ic_sub_active" alt="Web Development for Branding Menu Icon 2"/>
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <p class="sub_text_head_menu">
+                                                                Web Development <br />
+                                                                for Branding
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+
+                                                <a href="<?=$WEBURL?>/services/3/e-commerce-web-development">
+                                                    <div class="col-sm-4 col-md-4 col-lg-3 sub_content_list g-my-30 g-text-hover-3">
+                                                        <div class="col-md-2 img_sub_menu">
+                                                            <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_3.png" class="ic_sub_default" alt="E-Commerce Web Development Menu Icon 1" />
+                                                            <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_3_active.png" class="ic_sub_active"
+                                                            alt="E-Commerce Web Development Menu Icon 2" />
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <p class="sub_text_head_menu">
+                                                                E-Commerce Web <br />
+                                                                Development
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+
+                                                <a href="<?=$WEBURL?>/services/4/pos-sales-system-development">
+                                                    <div class="col-sm-4 col-md-4 col-lg-3 sub_content_list g-my-30 g-text-hover-4">
+                                                        <div class="col-md-2 img_sub_menu">
+                                                            <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_4.png" class="ic_sub_default" alt="POS Sales System Development Menu Icon 1" />
+                                                            <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_4_active.png" class="ic_sub_active" alt="POS Sales System Development Menu Icon 2"/>
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <p class="sub_text_head_menu">
+                                                                POS Sales System <br />
+                                                                Development
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+
+                                                <div class="clearfix visible-lg"></div>
+
+                                                <a href="<?=$WEBURL?>/services/5/stock-warehouse-management-system">
+                                                    <div class="col-sm-4 col-md-4 col-lg-3 sub_content_list g-my-30 g-text-hover-5">
+                                                        <div class="col-md-2 img_sub_menu">
+                                                            <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_5.png" class="ic_sub_default" alt="Stock/Warehouse Management System Menu Icon 1" />
+                                                            <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_5_active.png" class="ic_sub_active" alt="Stock/Warehouse Management System Menu Icon 2"/>
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <p class="sub_text_head_menu">
+                                                                Stock/Warehouse <br />
+                                                                Management System
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+
+                                                <a href="<?=$WEBURL?>/services/6/customer-loyalty-rewards-system">
+                                                    <div class="col-sm-4 col-md-4 col-lg-3 sub_content_list g-my-30 g-text-hover-6">
+                                                        <div class="col-md-2 img_sub_menu">
+                                                            <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_6.png" class="ic_sub_default" alt="Customer Loyalty & Rewards System Menu Icon 1" />
+                                                            <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_6_active.png" class="ic_sub_active" alt="Customer Loyalty & Rewards System Menu Icon 2"/>
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <p class="sub_text_head_menu">
+                                                                Customer Loyalty <br />
+                                                                & Rewards System
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+
+                                                <a href="<?=$WEBURL?>/services/7/online-booking-system">
+                                                    <div class="col-sm-4 col-md-4 col-lg-3 sub_content_list g-my-30 g-text-hover-7">
+                                                        <div class="col-md-2 img_sub_menu">
+                                                            <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_7.png" class="ic_sub_default" alt="Online Booking System Menu Icon 1" />
+                                                            <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_7_active.png" class="ic_sub_active" alt="Online Booking System Menu Icon 2" />
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <p class="sub_text_head_menu">Online Booking System</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+
+                                                <a href="<?=$WEBURL?>/services/8/online-e-learning-training-system">
+                                                    <div class="col-sm-4 col-md-4 col-lg-3 sub_content_list g-my-30 g-text-hover-8">
+                                                        <div class="col-md-2 img_sub_menu">
+                                                            <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_8.png" class="ic_sub_default" alt="Online E-Learning/Training System Menu Icon 1" />
+                                                            <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_8_active.png" class="ic_sub_active" alt="Online E-Learning/Training System Menu Icon 2"/>
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <p class="sub_text_head_menu">
+                                                                Online E-Learning/<br />
+                                                                Training System
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+
+                                                <a href="<?=$WEBURL?>/services/9/school-management-system">
+                                                    <div class="col-sm-4 col-md-4 col-lg-3 sub_content_list g-my-30 g-text-hover-9">
+                                                        <div class="col-md-2 img_sub_menu">
+                                                            <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_9.png" class="ic_sub_default" alt="School Management System Menu Icon 1" />
+                                                            <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_9_active.png" class="ic_sub_active" alt="School Management System Menu Icon 2" />
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <p class="sub_text_head_menu">School Management System</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+
+                                                <a href="<?=$WEBURL?>/services/10/email-marketing-system">
+                                                    <div class="col-sm-4 col-md-4 col-lg-3 sub_content_list g-my-30 g-text-hover-10">
+                                                        <div class="col-md-2 img_sub_menu">
+                                                            <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_10.png" class="ic_sub_default" alt="E-mail Marketing System Menu Icon 1" />
+                                                            <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_10_active.png" class="ic_sub_active" alt="E-mail Marketing System Menu Icon 2" />
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <p class="sub_text_head_menu">E-mail Marketing System</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="<?=$WEBURL?>/news">
+                                            <?=$lang['label_news']?>
+                                        </a>
+                                    </li>
+                                   <!--  <li class="menu-item">
+                                        <a href="<?=$WEBURL?>/comingsoon">
+                                            Testimonial
+                                        </a>
+                                    </li> -->
+                                    <li class="menu-item">
+                                        <a href="<?=$WEBURL?>/about-us"><?=$lang['label_about']?></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- /.navbar-collapse -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2" id="menu_login">
+                    <div class="row">
+                        <div class="col-sm-12" id="main-menu-login">
+                            <div class="collapse navbar-collapse">
+                                <ul id="menu_main_login" class="nav navbar-nav navbar-right">
+                                    <li class="menu-item menu-item-has-children login_link">
+                                       <div class="toggle-section">
+                                          <div class="switch">
+                                           <input id="cmn-toggle" class="cmn-toggle cmn-toggle-round change-lang" type="checkbox" data_url="<?=$_SERVER['REQUEST_URI']?>" value="<?php echo $data_lang ?>" <?php if($data_lang=='th'):?>checked="checked" <?php endif;?>>
+                                           <label for="cmn-toggle"></label>
+                                          </div>
+                                        </div>
+
+                                        <!-- <a href="index.php?lang=TH">TH</a> , <a href="index.php?lang=EN">EN</a> -->
+                                      </li> 
+                                    <li class="menu-item">
+                                        <a href="<?=$WEBURL?>/contact-us" class="btn btn-md g-btn-outline-cyan g-brd-1 g-mr-10 g-mb-15"> <?=$lang['label_contact']?></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<!-- nav scroll -->
+    <nav class="navbar navbar-inverse navbar-fixed-top scroll-top hidden-xs hidden-sm" id="scroll-show">
+        <div class="container-fluid">
+            <div id="mySidenav" class="sidenav " style="z-index: 100000;">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <ul id="menu-soledad_menu" class="menu ">
+                    <li class="menu_item menu-item-has-children">
+                        <a class="button" href="javascript:;"><?=$lang['label_services']?><i class="fa fa-sort-desc" aria-hidden="true" style="margin-left: 45%; vertical-align: super;"></i></a>
+                        <ul  class="sub-menu item g-my-20" style="list-style: none; ">
+                            <li class="menu-item">
+                                <a class="g-pa-0" href="<?=$WEBURL?>/services/1/Digital-Transformation-Consultant-Service">
+                                    <div class="g-flex">
+                                        <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_1_active.png" class="img-responsive g-width-10x" alt="Digital Transformation Consultant Service Menu Icon 2" />
+                                        <div class=" g-font-size-18 g-line-height-1_4 g-mt-20">Digital Transformation Consultant Service</div>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a class="g-pa-0" href="<?=$WEBURL?>/services/2/web-development-for-branding">
+                                    <div class="g-flex">
+                                        <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_2_active.png" class="img-responsive g-width-10x" alt="Web Development for Branding Menu Icon 2" />
+                                         <div class="col-sm-9 col-xs-8 g-px-0 g-font-size-18 g-line-height-1_4 g-mt-20">Web Development for Branding</div>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a class="g-pa-0" href="<?=$WEBURL?>/services/3/e-commerce-web-development">
+                                    <div class="g-flex">
+                                        <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_3_active.png" class="img-responsive g-width-10x" alt="E-Commerce Web Development Menu Icon 2" />
+                                        <div class="g-font-size-18 g-line-height-1_4 g-mt-20">E-Commerce Web Development</div>
+                                    </div>
+                                    
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a class="g-pa-0" href="<?=$WEBURL?>/services/4/pos-sales-system-development">
+                                    <div class="g-flex">
+                                        <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_4_active.png" class="img-responsive g-width-10x" alt="POS Sales System Development Menu Icon 2" />
+                                        <div class="g-font-size-18 g-line-height-1_4 g-mt-20">POS Sales System Development</div>
+                                    </div>
+                                  
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a class="g-pa-0" href="<?=$WEBURL?>/services/5/stock-warehouse-management-system">
+                                    <div class="g-flex">
+                                        <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_5_active.png" class="img-responsive g-width-10x" alt="Stock/Warehouse Management System Menu Icon 2" />
+                                        <div class="g-font-size-18 g-line-height-1_4 g-mt-20">Stock/Warehouse Management System</div>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a class="g-pa-0" href="<?=$WEBURL?>/services/6/customer-loyalty-rewards-system">
+                                    <div class="g-flex">
+                                        <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_6_active.png" class="img-responsive g-width-10x" alt="Customer Loyalty & Rewards System Menu Icon 2" />
+                                        <div class="g-font-size-18 g-line-height-1_4 g-mt-20">Customer Loyalty & Rewards System</div>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a class="g-pa-0" href="<?=$WEBURL?>/services/7/online-booking-system">
+                                    <div class="g-flex">
+                                        <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_7_active.png" class="img-responsive g-width-10x" alt="Online Booking System Menu Icon 2"  />
+                                        <div class="g-font-size-18 g-line-height-1_4 g-mt-20">Online Booking System</div>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a class="g-pa-0" href="<?=$WEBURL?>/services/8/online-e-learning-training-system">
+                                    <div class="g-flex" >
+                                        <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_8_active.png" class="img-responsive g-width-10x" alt="Online E-Learning/Training System Menu Icon 2" />
+                                        <div class=" g-font-size-18 g-line-height-1_4 g-mt-20">Online E-Learning/ Training System</div>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a class="g-pa-0" href="<?=$WEBURL?>/services/9/school-management-system">
+                                    <div class="g-flex" >
+                                        <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_9_active.png" class="img-responsive g-width-10x" alt="School Management System Menu Icon 2" />
+                                        <div class=" g-font-size-18 g-line-height-1_4 g-mt-20">School Management System</div>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a class="g-pa-0" href="<?=$WEBURL?>/services/10/email-marketing-system">
+                                    <div class="g-flex" >
+                                        <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_10_active.png" class="img-responsive g-width-10x" alt="E-mail Marketing System Menu Icon 2" />
+                                        <div class=" g-font-size-18 g-line-height-1_4 g-mt-20">E-mail Marketing System</div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="<?=$WEBURL?>/news" class="sub-menu"><?=$lang['label_news']?></a>
+                    </li>
+                   <!--  <li class="menu-item">
+                        <a href="<?=$WEBURL?>/comingsoon" class="sub-menu">Testimonial</a>
+                    </li> -->
+                    <li class="menu-item">
+                        <a href="<?=$WEBURL?>/about-us" class="sub-menu"><?=$lang['label_about']?></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="<?=$WEBURL?>/partner"><?=$lang['label_partner']?></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="<?=$WEBURL?>/contact-us" class="sub-menu"><?=$lang['label_contact']?></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-2" style="position: absolute; top: 25px; z-index: 1;">
+                        <span style="font-size: 30px; cursor: pointer;" onclick="openNav()"><i class="fa fa-bars" aria-hidden="true"></i></span>
+                    </div>
+                    <div class="col-lg-12">
+                        <div id="logo" style="margin-top: 0;">
+                            <a href="<?=$WEBURL?>">
+                                <img src="<?=$BASEURL?>/assets/images/logo.png" class="img-responsive margin-left-right" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="" style="position: absolute; top: 20px; z-index: 1; right: 1%;">
+                         <ul id="menu_main_login" class="nav navbar-nav " style="margin-top: 0;">
+                            <li>
+                                <div class="toggle-section">
+                                      <div class="switch">
+                                       <input id="cmn-toggle_1" class="cmn-toggle_1 cmn-toggle-round change-lang" type="checkbox" data_url="<?=$_SERVER['REQUEST_URI']?>" value="<?php echo $data_lang ?>" <?php if($data_lang=='th'):?>checked="checked" <?php endif;?>>
+                                       <label for="cmn-toggle_1"></label>
+                                      </div>
+                                </div>
+                            </li>
+                            <li class="menu-item">
+                                <a href="<?=$WEBURL?>/contact-us" class="btn btn-md g-btn-outline-cyan g-brd-1 g-mr-10 g-mb-15"><?=$lang['label_contact']?></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- moblie -->
+    <a id="close-sidebar-nav" class="header-6 visible-xs visible-sm"><i class="fa fa-close"></i></a>
+    <nav id="sidebar-nav" class="header-6 visible-xs visible-sm">
+        <!-- <div id="sidebar-nav-logo">
+            <a href="index.php">
+                <img src="<?=$BASEURL?>/assets/images/logo.png" class="img-responsive" />
+            </a>
+        </div> -->
+        <ul id="menu-soledad_menu" class="menu ">
+                    <li class="menu_item menu-item-has-children">
+                        <a class="button" href="javascript:;">
+                           <?=$lang['label_services']?> 
+                             <i class="fa fa-sort-desc" aria-hidden="true" style="margin-left: 60%; vertical-align: super;"></i>
+                        </a>
+                        <ul  class="sub-menu item g-my-20" style="list-style: none; ">
+                             <li class="menu-item">
+                            <a href="<?=$WEBURL?>/services/1/Digital-Transformation-Consultant-Service">
+                                <div class="col-sm-3 col-xs-4 g-px-0">
+                                    <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_1_active.png" class="img-responsive" alt="Digital Transformation Consultant Service Menu Icon 2" />
+                                </div>
+                                <div class="col-sm-9 col-xs-8 g-px-0 g-font-size-18 g-line-height-1_4 g-mt-10">Digital Transformation Consultant Service</div>
+                            </a>
+                        </li>
+
+                        <li class="menu-item">
+                            <a href="<?=$WEBURL?>/services/2/web-development-for-branding">
+                                <div class="col-sm-3 col-xs-4 g-px-0">
+                                    <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_2_active.png" class="img-responsive" alt="Web Development for Branding Menu Icon 2" />
+                                </div>
+                                <div class="col-sm-9 col-xs-8 g-px-0 g-font-size-18 g-line-height-1_4 g-mt-10">Web Development for Branding</div>
+                            </a>
+                        </li>
+
+                        <li class="menu-item">
+                            <a href="<?=$WEBURL?>/services/3/e-commerce-web-development">
+                                <div class="col-sm-3 col-xs-4 g-px-0">
+                                    <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_3_active.png" class="img-responsive" alt="E-Commerce Web Development Menu Icon 2" />
+                                </div>
+                                <div class="col-sm-9 col-xs-8 g-px-0 g-font-size-18 g-line-height-1_4 g-mt-10">E-Commerce Web Development</div>
+                            </a>
+                        </li>
+
+                        <li class="menu-item">
+                            <a href="<?=$WEBURL?>/services/4/pos-sales-system-development">
+                                <div class="col-sm-3 col-xs-4 g-px-0">
+                                    <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_4_active.png" class="img-responsive" alt="POS Sales System Development Menu Icon 2" />
+                                </div>
+                                <div class="col-sm-9 col-xs-8 g-px-0 g-font-size-18 g-line-height-1_4 g-mt-10">POS Sales System Development</div>
+                            </a>
+                        </li>
+
+                        <li class="menu-item">
+                            <a href="<?=$WEBURL?>/services/5/stock-warehouse-management-system">
+                                <div class="col-sm-3 col-xs-4 g-px-0">
+                                    <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_5_active.png" class="img-responsive" alt="Stock/Warehouse Management System Menu Icon 2" />
+                                </div>
+                                <div class="col-sm-9 col-xs-8 g-px-0 g-font-size-18 g-line-height-1_4 g-mt-10">Stock/Warehouse Management System</div>
+                            </a>
+                        </li>
+
+                        <li class="menu-item">
+                            <a href="<?=$WEBURL?>/services/6/customer-loyalty-rewards-system">
+                                <div class="col-sm-3 col-xs-4 g-px-0">
+                                    <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_6_active.png" class="img-responsive" alt="Customer Loyalty & Rewards System Menu Icon 2" />
+                                </div>
+                                <div class="col-sm-9 col-xs-8 g-px-0 g-font-size-18 g-line-height-1_4 g-mt-10">Customer Loyalty & Rewards System</div>
+                            </a>
+                        </li>
+
+                        <li class="menu-item">
+                            <a href="<?=$WEBURL?>/services/7/online-booking-system">
+                                <div class="col-sm-3 col-xs-4 g-px-0">
+                                    <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_7_active.png" class="img-responsive" alt="Online Booking System Menu Icon 2"  />
+                                </div>
+                                <div class="col-sm-9 col-xs-8 g-px-0 g-font-size-18 g-line-height-1_4 g-mt-10">Online Booking System</div>
+                            </a>
+                        </li>
+
+                        <li class="menu-item">
+                            <a href="<?=$WEBURL?>/services/8/online-e-learning-training-system">
+                                <div class="col-sm-3 col-xs-4 g-px-0">
+                                    <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_8_active.png" class="img-responsive" alt="Online E-Learning/Training System Menu Icon 2" />
+                                </div>
+                                <div class="col-sm-9 col-xs-8 g-px-0 g-font-size-18 g-line-height-1_4 g-mt-10">Online E-Learning/ Training System</div>
+                            </a>
+                        </li>
+
+                        <li class="menu-item">
+                            <a href="<?=$WEBURL?>/services/9/school-management-system">
+                                <div class="col-sm-3 col-xs-4 g-px-0">
+                                    <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_9_active.png" class="img-responsive" alt="School Management System Menu Icon 2" />
+                                </div>customer_loyalty
+                                <div class="col-sm-9 col-xs-8 g-px-0 g-font-size-18 g-line-height-1_4 g-mt-10">School Management System</div>
+                            </a>
+                        </li>
+
+                        <li class="menu-item">
+                            <a href="<?=$WEBURL?>/services/10/email-marketing-system">
+                                <div class="col-sm-3 col-xs-4 g-px-0">
+                                    <img src="<?=$BASEURL?>/assets/images/icon-navbar/ic_head_10_active.png" class="img-responsive" alt="E-mail Marketing System Menu Icon 2" />
+                                </div>
+                                <div class="col-sm-9 col-xs-8 g-px-0 g-font-size-18 g-line-height-1_4 g-mt-10">E-mail Marketing System</div>
+                            </a>
+                        </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="<?=$WEBURL?>/news" class="sub-menu"><?=$lang['label_news']?></a>
+                    </li>
+                    <!-- <li class="menu-item">
+                        <a href="<?=$WEBURL?>/comingsoon" class="sub-menu">Testimonial</a>
+                    </li> -->
+                    <li class="menu-item">
+                        <a href="<?=$WEBURL?>/about-us" class="sub-menu"><?=$lang['label_about']?></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="<?=$WEBURL?>/partner">Partner</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="<?=$WEBURL?>/contact-us" class="sub-menu"><?=$lang['label_contact']?></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="<?=$WEBURL?>/privacy" class="sub-menu">Privacy Policy</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="<?=$WEBURL?>/terms" class="sub-menu">Terms & Conditions</a>
+                    </li>
+                     <li>
+                        <div class="toggle-section">
+                            <div class="switch">
+                               <input id="cmn-toggle_2" class="cmn-toggle_2 cmn-toggle-round change-lang" type="checkbox" data_url="<?=$_SERVER['REQUEST_URI']?>" value="<?php echo $data_lang ?>" <?php if($data_lang=='th'):?>checked="checked" <?php endif;?>>
+                               <label for="cmn-toggle_2"></label>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+    </nav>
+    <div class="wrapper-boxed header-style-header-6 visible-xs visible-sm">
+        <header id="header" class="header-header-6 has-bottom-line">
+            <div id="navigation-sticky-wrapper" class="sticky-wrapper" style="height: 60px;">
+                <nav id="navigation" class="header-layout-bottom header-6" style="">
+                    <div class="col-xs-12 menu-header" style="width: 100%;">
+                        <div class="button-menu-mobile header-6"><i class="fa fa-bars"></i></div>
+                        <div id="logo" style="margin-top: 0;">
+                            <a href="<?=$WEBURL?>/home">
+                                <img src="<?=$BASEURL?>/assets/images/logo.png" class="img-responsive" />
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+    </div>
+</div>
+
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "500px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+
+    window.onscroll = function () {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("scroll-show").style.top = "0";
+            document.getElementById("scroll-show").style.opacity = "1";
+        } else {
+            document.getElementById("scroll-show").style.top = "-100px";
+        }
+    }
+
+    // function myarrow(){
+    //     var arrow = document.getElementById('showarrow');
+    //     if (arrow.style.display === 'block'){
+    //         arrow.style.display === 'none';
+    //     } else{
+    //         arrow.style.display = 'block';
+    //     }
+
+    // }
+
+    $(document).ready(function() {
+          $('.button').click(function() {
+            $(this).siblings(".item").toggle();
+          });
+    });
+
+    // $('body').on('change', '.change-lang', function(){
+    //     var lang = $(this).val();
+    //     $.post("demo_test_post.asp",
+    //       {
+    //         lang: lang,
+    //       }, 
+    //       function(data, status){
+    //         alert("Data: " + data + "\nStatus: " + status);
+    //       });
+    // });
+       
+
+</script>

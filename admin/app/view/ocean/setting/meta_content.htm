@@ -1,0 +1,112 @@
+<section class="content-header">
+  <h1>
+  	Meta Home
+    <small>ระบบจัดการ Meta Home</small>
+  </h1>
+</section>
+
+        <!-- Main content -->
+
+
+<section class="content" >
+	<div class="row">
+       <div class="col-md-12">
+		  <div class="box box-warning">
+			<div class="box-header with-border">
+			 	<h3 class="box-title">ระบบจัดการ Meta Home</h3>
+			</div>
+			 <form class="form-horizontal" id="contFrm" name="contFrm">
+
+			 <input type="hidden" name="mode" value="update_meta"/>
+			 <input type="hidden" name="meta_id" value="<?=$metaInfo['meta_id']?>"/>
+
+			<div class="box-body">
+
+				<div class="col-md-12">
+		          <!-- Custom Tabs -->
+		          <div class="nav-tabs-custom">
+		            <ul class="nav nav-tabs">
+		            <?php $l_c=1; foreach($langlist as $langL){ ?>
+		              <li <?php if($l_c=='1'){ ?> class="active"<?php } ?>><a href="#tab_<?=$langL['lang_prefix']?>" data-toggle="tab" aria-expanded="true"><?=$langL['lang_name']?></a></li>
+		            <?php $l_c++; } ?>
+		            </ul>
+		            <div class="tab-content">
+		            <?php $l_c=1; foreach($langlist as $langL){ ?>
+		              <div class="tab-pane <?php if($l_c=='1'){ ?>active<?php } ?>" id="tab_<?=$langL['lang_prefix']?>">
+	                    <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label"><?=$lang->_meta_title?> <span style="color: red;">*</span></label>
+	                      <div class="col-sm-7">
+	                        <input type="text" class="form-control" id="meta_title_<?=$langL['lang_prefix']?>" name="meta_title_<?=$langL['lang_prefix']?>" placeholder="<?=$lang->_meta_title?>" value="<?=$metaInfo['meta_title_'.$langL['lang_prefix']]?>">
+	                      </div>
+	                    </div>
+	                    <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label"><?=$lang->_meta_keyword?> <span style="color: red;">*</span></label>
+	                      <div class="col-sm-7">
+	                        <input type="text" class="form-control" id="meta_keyword_<?=$langL['lang_prefix']?>" name="meta_keyword_<?=$langL['lang_prefix']?>" placeholder="<?=$lang->_meta_keyword?>" value="<?=$metaInfo['meta_keyword_'.$langL['lang_prefix']]?>">
+	                      </div>
+	                    </div>
+	                    <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label"><?=$lang->_meta_desc?> <span style="color: red;">*</span></label>
+	                      <div class="col-sm-7">
+	                        <input type="text" class="form-control" id="meta_desc_<?=$langL['lang_prefix']?>" name="meta_desc_<?=$langL['lang_prefix']?>" placeholder="<?=$lang->_meta_desc?>" value="<?=$metaInfo['meta_desc_'.$langL['lang_prefix']]?>">
+	                      </div>
+	                    </div>
+
+
+		              </div>
+		              <?php $l_c++; } ?>
+		            </div>
+		          </div>
+		        </div>
+            </div>
+
+            <div class="box-footer" style="">
+
+			<a href="#/setting/meta_name/" class="btn btn-success pull-right"><?=$lang->_backtolist?></a>
+
+            <button type="reset" class="btn btn-default"><?=$lang->_reset?></button>
+            <button type="button" class="btn btn-primary" id="" onclick="saveContent();"> <i class="fa fa-save"></i> <?=$lang->_save?></button>
+
+            </div><!-- /.box-footer -->
+ 			</form>
+			</div>
+
+
+			</div>
+		</div>
+
+
+</section>
+
+<script>
+
+      callEditor('.summernote');
+
+</script>
+
+<div class="hidden" id="sku-clone">
+	<div class="well">
+				        		<div class="form-group">
+			                      <label for="exp_title" class="col-sm-3 control-label">SKU Name</label>
+			                      <div class="col-sm-9">
+			                        <input type="text" class="form-control"  name="sku_name[]" placeholder="" value="">
+			                        <input type="hidden" class="form-control data-status"  name="sku_status[]" placeholder="" value="O">
+			                        <input type="hidden" class="form-control "  name="sku_id[]" placeholder="" value="0">
+			                      </div>
+
+			                    </div>
+			                    <div class="form-group ">
+			                      <label for="exp_title" class="col-sm-3 control-label">Qty</label>
+			                      <div class="col-sm-2">
+			                        <input type="text" class="form-control text-center" onkeypress="numberonly(event);" name="sku_qty[]" placeholder="" value="">
+			                      </div>
+			                      <label for="exp_title" class="col-sm-2 control-label"><?=$lang->product_price?></label>
+			                      <div class="col-sm-3">
+			                        <input type="text" class="form-control" onkeypress="numberonly(event);" name="sku_price[]" placeholder="<?=$lang->product_price?>" value="">
+			                      </div>
+			                      <div class="col-sm-2">
+			                        <button type="button" class="btn btn-danger btn-sm" data-id="" onclick="delSku(this);"><i class="fa fa-trash"></i></button>
+			                      </div>
+			                    </div>
+		                    </div>
+</div>

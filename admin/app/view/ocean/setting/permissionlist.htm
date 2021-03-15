@@ -1,0 +1,84 @@
+<section class="content-header">
+  <h1>
+    Permission
+    <small>Permission Management</small>
+  </h1>  
+</section>
+
+        <!-- Main content -->
+<section class="content" >
+	<div class="row">
+		
+       <div class="col-md-12">
+		  <div class="box box-warning">
+			<div class="box-header with-border">
+			<h3 class="box-title">Group</h3>
+			  <div class="pull-right">
+			  <?php if($button_edit){ ?>
+			  	<a href="#/setting/creategroup" class="btn btn-flat btn-warning"><i class="fa fa-plus"></i> Create Group</a>
+			  <?php } ?>
+			  </div>
+			  
+			</div>
+			<div class="box-body">
+				<div class="col-sm-10">
+			   <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>No.</th>
+                        <th>Group Name</th>
+                        <th>User</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <?php $no = 1; foreach($groupList as $list){ ?>
+                      <tr>
+                        <td><?=$no?></td>
+                        <td><?=$list['role_name']?></td>
+                        <td>
+                        	<?php foreach($list['member'] as $team){ ?>
+	                       		<div  style="margin-bottom: 5px;">
+	                       			<!-- <img width="30" src="<?=$BASEURL?>/uploads/userthumbnail/<?=$team['user_thumb']?>" class="img-circle" alt="User Image" /> -->
+                              <img width="30" src="<?=$BASEURL?>/uploads/userthumbnail/default.jpg" class="img-circle" alt="User Image" />
+	                       			<?=$team['user_name']?>
+	                       		</div>
+	                       	<?php } ?>
+                        </td>
+                        <td>
+                        	<?php if($button_edit){ ?>
+                        	<a href="#/setting/editgroup/<?=$list['role_id']?>/" class="btn btn-success btn-flat"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                        	
+                        <a href="#/setting/edituser/<?=$list['role_id']?>/" class="btn btn-info btn-flat"><i class="fa fa-users"></i> Users</a>	
+                        <?php } ?>
+                        	<?php if($list['role_id']!='1' && $list['role_id']!='2') {?>
+                        	<?php if($button_delete){ ?>
+                        	<button class="btn btn-danger btn-flat " data-id="<?=$list['role_id']?>" onclick="deleteGroup(this);"><i class="fa fa-trash"></i> Delete</button>
+                        	<?php } ?>
+                        	<?php } ?>
+                        	
+                        </td>
+                      </tr>
+                     <?php $no++; } ?>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>No.</th>
+                        <th>Group Name</th>
+                        <th>User</th>
+                        <th>Action</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                  </div>
+			</div>
+			
+			</div>
+		</div>
+	</div>
+          
+</section>
+
+<script>
+	var inputused = 'D';
+</script>

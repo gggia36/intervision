@@ -1,0 +1,138 @@
+<?php
+ if(!empty($writerInfo)):
+	$default_color = $writerInfo['writer_color'];
+ else:
+ 	$default_color = '#007aff';	
+ endif;
+?>
+
+
+<section class="content-header">
+  <h1>
+   	ผู้เขียน 
+    <small>ระบบจัดการผู้เขียน</small>
+  </h1>
+</section>
+
+ <!-- Main content -->
+
+
+<section class="content" >
+	<div class="row">
+       <div class="col-md-12">
+		  <div class="box box-warning">
+			<div class="box-header with-border">
+			<?php if(!is_array($writerInfo)){ ?>
+			  <h3 class="box-title">สร้างหมวดหมู่</h3>
+			 <?php }else{ ?>
+			 	<h3 class="box-title">แก้ไขผู้เขียน</h3>
+			 <?php } ?>
+			</div>
+			 <form class="form-horizontal" id="contFrm" name="contFrm">
+			 <?php if(!is_array($writerInfo)){ ?>
+			 	<input type="hidden" name="mode" value="createwriter"/>
+			 	<input type="hidden" name="writer_id" id="writer_id" value="0"/>
+			 <?php }else{ ?>
+			 	<input type="hidden" name="mode" value="editwriter"/>
+			 	<input type="hidden" name="writer_id" value="<?=$writerInfo['writer_id']?>"/>
+			 <?php } ?>
+			<div class="box-body">
+
+				<div class="col-md-12">
+		          <!-- Custom Tabs -->
+		          <div class="">
+		            <div class="tab-content">
+
+		                <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label">ชื่อผู้เขียน  <span style="color: red;">*</span></label>
+	                      <div class="col-sm-5">
+	                        <input type="text" class="form-control" id="writer_name" name="writer_name" placeholder="<?=$lang->content_writer_name?>" value="<?=$writerInfo['writer_name']?>">
+	                      </div>
+	                    </div>
+
+	                    <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label">ตำแหน่ง  <span style="color: red;">*</span></label>
+	                      <div class="col-sm-5">
+	                        <input type="text" class="form-control" id="writer_position" name="writer_position" placeholder="<?=$lang->content_writer_position?>" value="<?=$writerInfo['writer_position']?>">
+	                      </div>
+	                    </div>
+
+	                     <?php if($writerInfo['company_thumb']!=''){ ?>
+		                <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label"></label>
+	                      <div class="col-sm-7">
+	                        <img src="<?=$BASEURL_F?>/Images/article/company/<?=$writerInfo['company_thumb']?>?<?=time()?>" class="img-responsive"/>
+	                      </div>
+	                    </div>
+		                <?php } ?>
+		                <div class="form-group" id="type-img-<?=$langL['lang_prefix']?>">
+	                      <label for="exp_title" class="col-sm-3 control-label">รูปภาพ Company</label>
+	                      <div class="col-sm-7">
+	                        <input type="file"  name="company_thumb" id="company_thumb" onchange="checksizefile(this);">
+	                        <input type="hidden" name="old_company_thumb" value="<?=$writerInfo['company_thumb']?>"/>
+	                        <p class="help-block"><?=$lang->_thumb_desc?></p>
+	                        <small style="color: #AAA;">ขนาดภาพหน้าหลักส่วนบนสุด : 240x50 px. :: .png ,.jpeg</small>
+	                        <div class="clearfix"></div>
+	                      </div>
+	                    </div>
+
+	                    <?php if($writerInfo['writer_thumb']!=''){ ?>
+		                <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label"></label>
+	                      <div class="col-sm-7">
+	                        <img src="<?=$BASEURL_F?>/Images/article/writer/<?=$writerInfo['writer_thumb']?>?<?=time()?>" class="img-responsive"/>
+	                      </div>
+	                    </div>
+		                <?php } ?>
+		                <div class="form-group" id="type-img-<?=$langL['lang_prefix']?>">
+	                      <label for="exp_title" class="col-sm-3 control-label">รูปภาพผู้เขียน</label>
+	                      <div class="col-sm-7">
+	                        <input type="file"  name="writer_thumb" id="writer_thumb" onchange="checksizefile(this);">
+	                        <input type="hidden" name="old_thumb" value="<?=$writerInfo['writer_thumb']?>"/>
+	                        <p class="help-block"><?=$lang->_thumb_desc?></p>
+	                        <small style="color: #AAA;">ขนาดภาพหน้าหลักส่วนบนสุด : 125x125 px. :: .png ,.jpeg</small>
+	                        <div class="clearfix"></div>
+	                      </div>
+	                    </div>
+
+
+	                    <div class="form-group">
+	                      	<label for="exp_title" class="col-sm-3 control-label">สถานะแสดงผล</label>
+	                      	<div class="col-sm-7" style="padding-top: 7px;">
+	                         	<input type="radio" class="minimal" name="active_status" value="O" <?php if($writerInfo['status']=="" || $writerInfo['status']=="O"){?> checked="" <?php }?>>&nbsp;&nbsp;ใช้งาน&nbsp;&nbsp;&nbsp;
+	                         	<input type="radio" class="minimal" name="active_status" value="C" <?php if($writerInfo['status']=="C"){?> checked="" <?php }?> >&nbsp;&nbsp;ไม่ใช้งาน
+	                      	</div>
+	                    </div>
+
+		            </div>
+		          </div>
+		        </div>
+
+            </div> 
+
+            <div class="box-footer" style="">
+
+			<a href="#/news/writer/" class="btn btn-success pull-right"><?=$lang->_backtolist?></a>
+
+            <button type="reset" class="btn btn-default"><?=$lang->_reset?></button>
+            <button type="button" class="btn btn-primary" id="" onclick="saveContentwriter();"> <i class="fa fa-save"></i> <?=$lang->_save?></button>
+
+            </div><!-- /.box-footer -->
+ 			</form>
+			</div>
+
+
+			</div>
+		</div>
+
+
+</section>
+
+<script>
+ 	$(function() {
+        $('.color_section').colorpicker();
+    });
+
+    callEditor('.summernote');
+
+</script>

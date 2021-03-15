@@ -1,0 +1,146 @@
+<?php
+ if(!empty($cateInfo)):
+	$default_color = $cateInfo['category_color'];
+ else:
+ 	$default_color = '#007aff';	
+ endif;
+?>
+
+
+<section class="content-header">
+  <h1>
+   	หมวดหมู่ 
+    <small>ระบบจัดการหมวดหมู่</small>
+  </h1>
+</section>
+
+ <!-- Main content -->
+
+
+<section class="content" >
+	<div class="row">
+       <div class="col-md-12">
+		  <div class="box box-warning">
+			<div class="box-header with-border">
+			<?php if(!is_array($cateInfo)){ ?>
+			  <h3 class="box-title">สร้างหมวดหมู่</h3>
+			 <?php }else{ ?>
+			 	<h3 class="box-title">แก้ไขหมวดหมู่</h3>
+			 <?php } ?>
+			</div>
+			 <form class="form-horizontal" id="contFrm" name="contFrm">
+			 <?php if(!is_array($cateInfo)){ ?>
+			 	<input type="hidden" name="mode" value="createcategory"/>
+			 	<input type="hidden" name="category_id" id="category_id" value="0"/>
+			 <?php }else{ ?>
+			 	<input type="hidden" name="mode" value="editcategory"/>
+			 	<input type="hidden" name="category_id" value="<?=$cateInfo['category_id']?>"/>
+			 <?php } ?>
+			<div class="box-body">
+
+				<div class="col-md-12">
+		          <!-- Custom Tabs -->
+		          <div class="">
+		            <div class="tab-content">
+
+		                <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label">ชื่อหมวดหมู่  <span style="color: red;">*</span></label>
+	                      <div class="col-sm-5">
+	                        <input type="text" class="form-control" id="category_name" name="category_name" placeholder="<?=$lang->content_category_name?>" value="<?=$cateInfo['category_name']?>">
+	                      </div>
+	                    </div>
+
+	         
+                      	<div class="form-group">
+                        	<label for="exp_title" class="col-sm-3 control-label">Label Color</label>
+                        	<div class="col-sm-2">
+                            	<div class="input-group colorpicker-component color_section">
+	                                <input type="text" id="category_color" name="category_color" value="<?=$default_color?>" class="form-control" />
+	                                <span class="input-group-addon"><i></i></span>
+	                            </div>
+                        	</div>
+                      	</div>  
+
+                      	<div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label">Meta Title</label>
+	                      <div class="col-sm-5">
+	                        <input type="text" class="form-control" id="meta_title" name="meta_title"  value="<?=$cateInfo['meta_title']?>">
+	                      </div>
+	                    </div>
+
+	                    <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label">Meta Description</label>
+	                      <div class="col-sm-5">
+	                        <input type="text" class="form-control" id="meta_desc" name="meta_desc"  value="<?=$cateInfo['meta_desc']?>">
+	                      </div>
+	                    </div> 
+
+	                    <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label">Meta Keyword</label>
+	                      <div class="col-sm-5">
+	                        <input type="text" class="form-control" id="meta_keyword" name="meta_keyword"  value="<?=$cateInfo['meta_keyword']?>">
+	                      </div>
+	                    </div>    
+
+	                    <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label">Og title</label>
+	                      <div class="col-sm-7">
+	                        <input type="text" class="form-control" id="og_title" name="og_title"  value="<?=$cateInfo['og_title']?>">
+	                      </div>
+	                    </div>  
+
+	                    <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label">Og description</label>
+	                      <div class="col-sm-7">
+	                        <input type="text" class="form-control" id="og_desc" name="og_desc"  value="<?=$cateInfo['og_desc']?>">
+	                      </div>
+	                    </div>  
+         
+
+	                    <div class="form-group">
+		                    <label for="exp_title" class="col-sm-3 control-label">ลำดับแสดงผล</label>
+		                    <div class="col-sm-7">
+		                        <input type="text"  class="form-control" name="sort" value="<?=$cateInfo['sort']?>" maxlength="5" style="width: 80px;">
+		                    </div>
+	                    </div> 
+
+	                    <div class="form-group">
+	                      	<label for="exp_title" class="col-sm-3 control-label">สถานะแสดงผล</label>
+	                      	<div class="col-sm-7" style="padding-top: 7px;">
+	                         	<input type="radio" class="minimal" name="active_status" value="O" <?php if($cateInfo['status']=="" || $cateInfo['status']=="O"){?> checked="" <?php }?>>&nbsp;&nbsp;ใช้งาน&nbsp;&nbsp;&nbsp;
+	                         	<input type="radio" class="minimal" name="active_status" value="C" <?php if($cateInfo['status']=="C"){?> checked="" <?php }?> >&nbsp;&nbsp;ไม่ใช้งาน
+	                      	</div>
+	                    </div>
+
+		            </div>
+		          </div>
+		        </div>
+
+            </div> 
+
+            <div class="box-footer" style="">
+
+			<a href="#/news/category/" class="btn btn-success pull-right"><?=$lang->_backtolist?></a>
+
+            <button type="reset" class="btn btn-default"><?=$lang->_reset?></button>
+            <button type="button" class="btn btn-primary" id="" onclick="saveContentCategory();"> <i class="fa fa-save"></i> <?=$lang->_save?></button>
+
+            </div><!-- /.box-footer -->
+ 			</form>
+			</div>
+
+
+			</div>
+		</div>
+
+
+</section>
+
+<script>
+ 	$(function() {
+        $('.color_section').colorpicker();
+    });
+
+    callEditor('.summernote');
+
+</script>

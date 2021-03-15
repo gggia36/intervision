@@ -1,0 +1,72 @@
+<style>
+	.form-group .control-label {
+		text-align: left;
+	}
+	.box-body {padding-left: 10%;}
+</style>
+
+<section class="content-header">
+  <h1>
+   Position
+    <small>Position Management</small>
+  </h1>  
+</section>
+
+        <!-- Main content -->
+<section class="content" >
+	<div class="row">
+       <div class="col-md-12">
+		  <div class="box box-warning">
+			<div class="box-header with-border">
+			<?php if(!is_array($groupInfomation)){ ?>
+			  <h3 class="box-title">Create Master Data Group</h3>
+			 <?php }else{ ?> 
+			 	<h3 class="box-title">Edit Master Data Group</h3>
+			 <?php } ?>
+			</div>
+			 <form class="form-horizontal" id="createFrm" name="createFrm">
+			 <?php if(!is_array($groupInfomation)){ ?>
+			 <input type="hidden" name="mode" value="createmastergroup"/>
+			 <?php }else{ ?>
+			 <input type="hidden" name="mode" value="editmastergroup"/>
+			 <input type="hidden" name="group_id" value="<?=$groupInfomation['id']?>"/>
+			 <?php } ?>
+			<div class="box-body">
+			   
+
+                    <div class="form-group">
+                      <label for="leave_title" class="col-sm-2 control-label">Group Name</label>
+                      <div class="col-sm-4">
+                        <input type="text" class="form-control" id="group_name" name="group_name" placeholder="Group Name" value="<?=$groupInfomation['group_name']?>">
+                      </div>
+                      
+                    </div>
+                    
+                    
+					
+                    
+                  
+                    
+                  
+                  
+                
+			</div>
+			<div class="box-footer" style="margin-left: 10%">
+			<a href="#/setting/masterdata/" class="btn btn-success pull-right">Back To List</a>
+			
+                    <!--<button type="reset" class="btn btn-default">Reset</button>-->
+                    <button type="button" class="btn btn-primary"  onclick="saveMasterGroup();">Save</button>
+            
+            </div><!-- /.box-footer -->
+            </form>
+			</div>
+		</div>
+	</div>
+          
+</section>
+
+<script>
+	 
+</script>
+
+

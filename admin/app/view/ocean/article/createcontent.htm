@@ -1,0 +1,253 @@
+<?php
+	if(!empty($contentInfo['category_id'])){
+		$cat_arr = $contentInfo['category_id'];
+	}else{
+		$cat_arr = array();
+	}
+?>
+<section class="content-header">
+  <h1>
+   	ข่าวสาร
+    <small>ระบบจัดการข่าวสาร</small>
+  </h1>
+</section>
+
+ <!-- Main content -->
+<section class="content" >
+	<div class="row">
+       <div class="col-md-12">
+		  <div class="box box-warning">
+			<div class="box-header with-border">
+			<?php if(!is_array($contentInfo)){ ?>
+			  <h3 class="box-title">สร้างข่าวสาร</h3>
+			 <?php }else{ ?>
+			 	<h3 class="box-title">แก้ไขข่าวสาร</h3>
+			 <?php } ?>
+			</div>
+			 <form class="form-horizontal" id="contFrm" name="contFrm">
+			 <?php if(!is_array($contentInfo)){ ?>
+			 <input type="hidden" name="mode" value="createcontent"/>
+			 <input type="hidden" name="content_id" id="content_id" value="0"/>
+			 <?php }else{ ?>
+			 <input type="hidden" name="mode" value="editcontent"/>
+			 <input type="hidden" name="content_id" value="<?=$contentInfo['content_id']?>"/>
+			 <?php } ?>
+			<div class="box-body">
+
+				<div class="col-md-9">
+		          <!-- Custom Tabs -->
+		          <div class="">
+
+		            <div class="tab-content">
+
+		            	<?php if($contentInfo['content_thumb_highlight']!=''){ ?>
+		                <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label"></label>
+	                      <div class="col-sm-7">
+	                        <img src="<?=$BASEURL_F?>Images/article/highlight/<?=$contentInfo['content_thumb_highlight']?>" class="img-responsive"/>
+	                      </div>
+	                    </div>
+		                <?php } ?>
+
+		                <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label">รูปภาพ Highlight  <span style="color: red;">*</span></label>
+	                      <div class="col-sm-7">
+	                        <input type="file" name="content_thumb_highlight" id="content_thumb_highlight">
+	                        <input type="hidden" name="old_thumb_highlight" value="<?=$contentInfo['content_thumb_highlight']?>"/>
+	                        <p class="help-block"><?=$lang->_thumb_desc?></p>
+	                        <small style="color: #AAA;">ขนาดภาพ  : 425x595 px.</small>
+	                      </div>
+	                    </div>
+
+                       <?php if($contentInfo['content_thumb']!=''){ ?>
+		                <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label"></label>
+	                      <div class="col-sm-7">
+	                        <img src="<?=$BASEURL_F?>Images/article/<?=$contentInfo['content_thumb']?>" class="img-responsive"/>
+	                      </div>
+	                    </div>
+		                <?php } ?>
+
+		                <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label">รูปภาพ  <span style="color: red;">*</span></label>
+	                      <div class="col-sm-7">
+	                        <input type="file" name="content_thumb" id="content_thumb">
+	                        <input type="hidden" name="old_thumb" value="<?=$contentInfo['content_thumb']?>"/>
+	                        <p class="help-block"><?=$lang->_thumb_desc?></p>
+	                        <small style="color: #AAA;">ขนาดภาพ  : 1200x700 px.</small>
+	                      </div>
+	                    </div>
+
+	                    <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label">Language  <span style="color: red;">*</span></label>
+	                      <div class="col-sm-7">
+	                        <select name="lang_mode" id="lang_mode" class="form-control">
+	                        	<option value="en" <?php if($contentInfo['lang_mode']=='en'):?> selected="selected"<?php endif;?>>Global</option>
+	                        	<option value="th" <?php if($contentInfo['lang_mode']=='th'):?> selected="selected"<?php endif;?>>Thai</option>
+	                        </select>
+	                      </div>
+	                    </div>
+
+	                    <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label">หมวดหมู่  <span style="color: red;">*</span></label>
+	                      <div class="col-sm-7">
+	                      	<select name="category_id[]" id="category_id" class="select2 form-control" multiple="multiple">
+	                      		<option value="">::-- เลือกหมวดหมู่ --::</option>
+	                        <?php 
+	                        	if(!empty($categoryList)){
+	                        		foreach($categoryList as $category){ ?>
+
+	                        		<option value="<?=$category['category_id']?>" <?php if(in_array($category['category_id'],$cat_arr)):?> selected="selected"<?php endif;?>><?=$category['category_name']?></option>
+	                        <?php 
+	                    			}
+	                        	}
+	                        ?>
+	                        </select>
+	                      </div>
+	                    </div>
+
+	                    <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label">ผู้เขียน  <span style="color: red;">*</span></label>
+	                      <div class="col-sm-7">
+	                      	<select name="writer_id" id="writer_id" class="select2 form-control">
+	                      		<option value="">::-- เลือกผู้เขียน --::</option>
+	                        <?php 
+	                        	if(!empty($writerList)){
+	                        		foreach($writerList as $writer){ ?>
+
+	                        		<option value="<?=$writer['writer_id']?>" <?php if($contentInfo['writer_id']==$writer['writer_id']):?> selected="selected"<?php endif;?>><?=$writer['writer_name']?></option>
+	                        <?php 
+	                    			}
+	                        	}
+	                        ?>
+	                        </select>
+	                      </div>
+	                    </div>
+
+
+                  		<div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label">ชื่อข่าวสาร  <span style="color: red;">*</span></label>
+	                      <div class="col-sm-7">
+	                        <input type="text" class="form-control" id="content_name" name="content_name" placeholder="<?=$lang->content_content_name?>" value="<?=$contentInfo['content_name']?>">
+	                      </div>
+	                    </div>
+
+
+						<div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label">URL Link </label>
+	                      <div class="col-sm-7">
+	                        <input type="text" class="form-control" id="content_url" name="content_url" value="<?=$contentInfo['content_url']?>">
+	                      </div>
+	                    </div>
+
+                       	<div class="form-group ">
+     	                    <label for="exp_desc" class="col-sm-3 control-label">รายละเอียด(ย่อ)</label>
+     	                    <div class="col-sm-7">
+
+     	                        <textarea class="form-control " id="content_short" name="content_short" placeholder="รายละเอียด(ย่อ)"><?=$contentInfo['content_short']?></textarea>
+     	                    </div>
+     	                 </div>
+						<div class="form-group">
+	                      <label for="exp_desc" class="col-sm-3 control-label">รายละเอียด</label>
+	                      <div class="col-sm-9">
+
+	                        <textarea class="form-control summernote" id="content_desc" name="content_desc" placeholder="<?=$lang->content_content_desc?>"><?=$contentInfo['content_desc']?></textarea>
+	                      </div>
+	                    </div>
+
+	                    <div class="form-group">
+	                      <label for="exp_desc" class="col-sm-3 control-label">วันที่</label>
+	                      <div class="col-sm-3">
+	                        <input class="form-control datepicker" id="content_date" name="content_date" value="<?=$contentInfo['content_date']?>">
+	                      </div>
+	                    </div>
+
+	                    <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label">Meta Title</label>
+	                      <div class="col-sm-7">
+	                        <input type="text" class="form-control" id="meta_title" name="meta_title"  value="<?=$contentInfo['meta_title']?>">
+	                      </div>
+	                    </div>
+
+	                    <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label">Meta Description</label>
+	                      <div class="col-sm-7">
+	                        <input type="text" class="form-control" id="meta_desc" name="meta_desc"  value="<?=$contentInfo['meta_desc']?>">
+	                      </div>
+	                    </div> 
+
+	                    <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label">Meta Keyword</label>
+	                      <div class="col-sm-7">
+	                        <input type="text" class="form-control" id="meta_keyword" name="meta_keyword"  value="<?=$contentInfo['meta_keyword']?>">
+	                      </div>
+	                    </div>  
+
+	                    <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label">Og title</label>
+	                      <div class="col-sm-7">
+	                        <input type="text" class="form-control" id="og_title" name="og_title"  value="<?=$contentInfo['og_title']?>">
+	                      </div>
+	                    </div>  
+
+	                    <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label">Og description</label>
+	                      <div class="col-sm-7">
+	                        <input type="text" class="form-control" id="og_desc" name="og_desc"  value="<?=$contentInfo['og_desc']?>">
+	                      </div>
+	                    </div>  
+
+
+	                    <div class="form-group">
+		                    <label for="exp_title" class="col-sm-3 control-label">ลำดับแสดงผล</label>
+		                    <div class="col-sm-7">
+		                        <input type="text"  class="form-control" name="sort" value="<?=$contentInfo['sort']?>" maxlength="5" style="width: 80px;">
+		                    </div>
+	                    </div> 
+
+	                    <div class="form-group">
+	                      	<label for="exp_title" class="col-sm-3 control-label">สถานะแสดงผล</label>
+	                      	<div class="col-sm-7" style="padding-top: 7px;">
+	                         	<input type="radio" class="minimal" name="active_status" value="O" <?php if($contentInfo['active_status']=="" || $contentInfo['active_status']=="O"){?> checked="" <?php }?>>&nbsp;&nbsp;ใช้งาน&nbsp;&nbsp;&nbsp;
+	                         	<input type="radio" class="minimal" name="active_status" value="C" <?php if($contentInfo['active_status']=="C"){?> checked="" <?php }?> >&nbsp;&nbsp;ไม่ใช้งาน
+	                      	</div>
+	                    </div>
+
+
+
+		            </div>
+		          </div>
+		        </div>
+
+
+
+
+            </div>
+
+            <div class="box-footer" style="">
+
+			<a href="#/news/newslist/" class="btn btn-success pull-right"><?=$lang->_backtolist?></a>
+
+            <button type="reset" class="btn btn-default"><?=$lang->_reset?></button>
+            <button type="button" class="btn btn-primary" id="" onclick="saveContentContent();"> <i class="fa fa-save"></i> <?=$lang->_save?></button>
+
+            </div><!-- /.box-footer -->
+ 			</form>
+			</div>
+
+
+			</div>
+		</div>
+
+
+</section>
+
+<script>
+	$('.datepicker').datepicker({
+		format:'dd/mm/yyyy'
+	});
+
+	$('.select2').select2();
+      callEditor('.summernote');
+
+</script>

@@ -1,0 +1,171 @@
+  <style type="text/css">
+      article{
+            width: 100% !important;
+            margin: 45px auto;
+            clear: both;
+            padding-left: 0px;
+            padding-right: 0px;
+            max-width: 100% !important;
+            background: transparent;
+      }
+  </style>
+       <div class="wrapper g-pt-100--xl g-pt-30--lg g-pt-100--sm">
+            <section id="about_banner">
+                <div class="container ">
+                     <div class="row text-center ">
+                        <a href="<?=$BASEURL?>/news">
+                            <p class="g-font-weight-700 letter-spacing-2 g-color-black">NEWS & ARTICLES</p>
+                        </a>
+                        <hr class="hr-detail">
+                    </div>
+                    <!-- <a href="" class="btn_back">
+                        <i class="fa fa-angle-left"></i> Back to Resources
+                    </a> -->
+                    <div class="row text-center">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-offset-2 col-lg-8">
+                            <h1 style="line-height: 55px; margin-bottom: 20px;"><?=$news_detail['content_name']?></h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                    
+                        <div class="col-md-12  text-center">
+                            <?php if(!empty($news_detail['category_info'])):?>
+                                <?php foreach($news_detail['category_info'] as $news_detail2):?>
+                                <a href="<?=$BASEURL?>/blog/category/<?=$news_detail2['category_id']?>/<?=GF::formatURL($news_detail2['category_name'])?>">
+                                    <h5 class="letter-spacing-2"><?=$news_detail2['category_name']?></h5>
+                                </a>
+                                <?php endforeach;?>
+                            <?php endif;?>
+                            <span class="g-color-gray-light-v1">  By <?=$news_detail['writer_info']['writer_name']?> • <?=$news_detail['content_date']?></span>
+                        </div>
+                    </div>
+                    <div class="row g-my-80">
+                        <div class="col-md-12">
+                           <?php if(!empty($news_detail['content_img'])):?>
+                                <img src="<?=$BASEURL?>/Images/article/<?=$news_detail['content_img']?>" style="width: 100%;">
+                            <?php endif;?>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 blog_detail_content">
+
+                            <div class="row blog_detail_set">
+                                <div class="col xs-12 col-sm-12 col-md-2 blog_writter  hidden-xs hidden-sm">
+                                    <?php if(!empty($news_detail['writer_info']['writer_thumb'])):?>
+                                        <img src="<?=$BASEURL?>/Images/article/writer/<?=$news_detail['writer_info']['writer_thumb']?>" alt="" class="img-responsive margin-left-right">
+                                    <?php endif;?>
+                                    <h4><?=$news_detail['writer_info']['writer_name']?></h4>
+
+                                    <p class="g-color-gray-light-v1"><?=$news_detail['writer_info']['writer_position']?></p>
+                                    <?php if(!empty($news_detail['writer_info']['company_thumb'])):?>
+                                        <img src="<?=$BASEURL?>/Images/article/company/<?=$news_detail['writer_info']['company_thumb']?>" alt="" class="img-responsive margin-left-right">
+                                    <?php endif;?>
+
+                                </div>
+                                <div class="col xs-12 col-sm-12 col-md-7 blog_detail_editor">
+                                  <?=$news_detail['content_desc']?>
+                                </div>
+                                <div class="col xs-12 col-sm-12 col-md-2 blog_writter  visible-xs visible-sm">
+                                   <?php if(!empty($news_detail['writer_info']['writer_thumb'])):?>
+                                        <img src="<?=$BASEURL?>/Images/article/writer/<?=$news_detail['writer_info']['writer_thumb']?>" alt="" class="img-responsive margin-left-right">
+                                    <?php endif;?>
+                                    <h4><?=$news_detail['writer_info']['writer_name']?></h4>
+                                    <p class="g-color-gray-light-v1"><?=$news_detail['writer_info']['writer_position']?></p>
+                                    <?php if(!empty($news_detail['writer_info']['company_thumb'])):?>
+                                        <img src="<?=$BASEURL?>/Images/article/company/<?=$news_detail['writer_info']['company_thumb']?>" alt="" class="img-responsive margin-left-right g-my-50">
+                                    <?php endif;?>
+                                </div>
+                                <div class="col xs-12 col-sm-12 col-md-3 blog_detail_share">
+                                    <div class=" hidden-xs hidden-sm">
+                                        <h4>Share this post</h4>
+                                        <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                                            <a class="a2a_button_twitter"> </a>
+                                            <a class="a2a_button_facebook"> </a>
+                                            <a class="a2a_button_copy_link"> </a>
+                                        </div>
+                                        <script async src="https://static.addtoany.com/menu/page.js"></script>
+                                    </div>
+                                    
+
+                                    <h4 class=" hidden-xs hidden-sm" style="margin-top: 35px;">Search the blog</h4>
+
+                                    <form id="FrmSearch_blog" onsubmit="return false;">
+                                        <div class="input-group">
+                                            <input id="search_blog" type="text" class="form-control" name="search_blog" placeholder="Search the blog" />
+                                            <span id="search_btn" class="input-group-addon">
+                                                <i class="fa fa-search"></i>
+                                            </span>
+                                        </div>
+                                    </form>
+
+                                   <!--  <div class=" hidden-xs hidden-sm">
+                                        <h4 style="margin-top: 35px;">intervision</h4>
+
+                                        <p>
+                                            Sign-up to receive the latest insights in to online trends
+                                        </p>
+
+                                        <a href="javascript:;" id="open-popup" class="btn_set_contact btn_sign_up" style="background-size: cover; padding: 10px; font-size: 15px; text-transform: uppercase; border-radius: 4px;">
+                                            Sign Up
+                                        </a>
+                                    </div> -->
+
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+
+           <?php if(!empty($news_related)):?>
+                <div class="container-fluid ">
+                    <div class="row  bg-light-gray">
+                        <div class="container blog_more_new">
+                            <h3 class="txt_blog_border" style="padding-left: 0;">
+                                More in News & Articles
+                            </h3>
+                            <a href="<?=$BASEURL?>/blog_all" class="view_all" style="color: #4d87fb;">
+                                View all <i class="fa fa-angle-right"></i>
+                            </a>
+                            <div class="row lastest_list">
+
+                                <?php foreach($news_related as $related):?>
+                                <div class="col-xs-12 col-sm-6 col-md-3 lastest_list_content_all">
+                                    <div class="lastest_detail_list blog-img">
+                                        <a href="<?=$BASEURL?>/blog/<?=$related['content_id']?>/<?=GF::formatURL($related['content_url'])?>">
+                                            <div class="blog-img-set">
+                                                <img src="<?=$BASEURL?>/Images/article/<?=$related['content_img']?>" class="img-responsive">
+                                            </div>
+                                            <div class="caption_detail_lastest">
+                                                <h5 class="fix-textnewdetail">
+                                                    <?=$related['content_name']?>
+                                                </h5>
+                                                <!-- <p>
+                                                    By <?=$related['writer_info']['writer_name']?> • <?=$related['content_date']?>
+                                                </p> -->
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <p class="txt_writer" >
+                                        By <?=$related['writer_info']['writer_name']?> • <?=$related['content_date']?>
+                                    </p>
+                                </div>
+                                <?php endforeach;?>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php endif;?>
+            </section>
+        </div>
+
+ <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5e4f4e74fb5dd10012827dd4&product=inline-share-buttons&cms=sop' async='async'></script>

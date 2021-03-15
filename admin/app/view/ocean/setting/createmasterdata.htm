@@ -1,0 +1,82 @@
+<style>
+	.form-group .control-label {
+		text-align: left;
+	}
+	.box-body {padding-left: 10%;}
+</style>
+
+<section class="content-header">
+  <h1>
+   Masterdata
+    <small>Masterdata Management</small>
+  </h1>  
+</section>
+
+        <!-- Main content -->
+<section class="content" >
+	<div class="row">
+       <div class="col-md-12">
+		  <div class="box box-warning">
+			<div class="box-header with-border">
+			<?php if(!is_array($masterInfomation)){ ?>
+			  <h3 class="box-title">Create Master Data</h3>
+			 <?php }else{ ?> 
+			 	<h3 class="box-title">Edit Master Data</h3>
+			 <?php } ?>
+			</div>
+			 <form class="form-horizontal" id="createFrm" name="createFrm">
+			 <?php if(!is_array($masterInfomation)){ ?>
+			 <input type="hidden" name="mode" value="createmasterdata"/>
+			 <input type="hidden" name="group_id" value="<?=$groupInfomation['id']?>"/>
+			 <?php }else{ ?>
+			 <input type="hidden" name="mode" value="editmasterdata"/>
+			 <input type="hidden" name="master_id" value="<?=$masterInfomation['id']?>"/>
+			 <input type="hidden" name="group_id" value="<?=$masterInfomation['group_id']?>"/>
+			 <?php } ?>
+			 
+			<div class="box-body">
+			   
+
+                    <div class="form-group">
+                      <label for="leave_title" class="col-sm-2 control-label">Masterdata Name</label>
+                      <div class="col-sm-4">
+                        <input type="text" class="form-control" id="master_name" name="master_name" placeholder="Masterdata Name" value="<?=$masterInfomation['master_name']?>">
+                      </div>
+                      
+                    </div>
+                    
+                    
+					
+                    
+                  
+                    
+                  
+                  
+                
+			</div>
+			<div class="box-footer" style="margin-left: 10%">
+			
+			
+                    <!--<button type="reset" class="btn btn-default">Reset</button>-->
+                    <?php if(!is_array($masterInfomation)){ ?>
+                    <a href="#/setting/masterlist/<?=$groupInfomation['id']?>/" class="btn btn-success pull-right">Back To List</a>
+                    <button type="button" class="btn btn-primary"  onclick="saveMasterData('<?=$groupInfomation['id']?>');">Save</button>
+                    <?php }else{ ?>
+                    <a href="#/setting/masterlist/<?=$masterInfomation['group_id']?>/" class="btn btn-success pull-right">Back To List</a>
+                    <button type="button" class="btn btn-primary"  onclick="saveMasterData('<?=$masterInfomation['group_id']?>');">Save</button>
+                    <?php } ?>
+                    
+            
+            </div><!-- /.box-footer -->
+            </form>
+			</div>
+		</div>
+	</div>
+          
+</section>
+
+<script>
+	 
+</script>
+
+

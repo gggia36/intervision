@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<?php include('head.htm'); ?>
+<?php if($memberinfo['user_role_id']!=1){?>
+<!-- <style type="text/css">
+    .btn-update-status {
+        display: none;
+    }
+</style> -->
+<?php }?>
+
+<body class="sidebar-mini <?=$memberinfo['user_theme']?>">
+    <div class="wrapper">
+
+        <?php include('header.htm'); ?>
+        <!-- Left side column. contains the logo and sidebar -->
+        <?php include('sidebar.htm'); ?>
+
+        <!-- Content Wrapper. Contains page content -->
+
+        <div class="content-wrapper" id="content">
+
+
+        </div>
+        <!-- /.content-wrapper -->
+
+        <?php include('footer.htm'); ?>
+    </div>
+    <!-- ./wrapper -->
+
+    <?php include('js.htm'); ?>
+
+    <?php include('element_ui.htm'); ?>
+
+</body>
+
+</html>

@@ -1,0 +1,121 @@
+ <div class="wrapper fade-in">
+            <section>
+                <div class="container">
+                    <div class="row text-center g-py-100--xl g-py-30--lg">
+                        <h1 class="g-font-weight-700">News & Articles</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-12 col-sm-12 col-md-12 head_blog">
+                                <ul class="menu_blog">
+                                    <li>
+                                        <a href="<?=$BASEURL?>/news" class="g-font-size-25--md " >
+                                            Highlights
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?=$BASEURL?>/blog_all"  class="g-font-size-25--md ">
+                                            All
+                                        </a>
+                                    </li>
+                                 
+                                   <?php $k=1; if(!empty($categoryAll)):?>
+                                        <?php foreach($categoryAll as $cate):?>
+                                            <li>
+                                                <a  href="<?=$BASEURL?>/blog/category/<?=$cate['category_id']?>/<?=GF::formatURL($cate['category_name'])?>" <?php if($category_id==$cate['category_id']):?>class="active "<?php endif;?>>
+                                                    <?=$cate['category_name']?>
+                                                </a>
+                                            </li>
+                                        <?php endforeach;?> 
+                                    <?php endif;?>
+                                </ul>
+
+                                <div class="search_blog">
+                                    <form id="FrmSearch_blog" onsubmit="return false;">
+                                        <div class="col-xs-12 col-sm-12 col-md-4"></div>
+                                        <div class="col-xs-12 col-sm-12 col-md-8">
+                                            <div style="display: inline-block;">
+                                                <div class="input-group">
+                                                    <input id="search_blog" type="text" class="form-control" name="search_blog" placeholder="Search the blog" />
+                                                    <span id="search_btn" class="input-group-addon">
+                                                        <i class="fa fa-search"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section>
+                    <div class="row blog_guide ">
+                        <div class="container">
+                            <div class="row">
+                              <?php $k=1; if(!empty($categoryAll)):?>
+                                    <?php foreach($categoryAll as $cate):?>
+                                    <?php
+                                        if($cate['category_id']==$ids){
+                                    ?>
+                                    <div class="col-md-6 g-px-40 g-px-0--md g-px-20--lg">
+                                        <h3 class=" letter-spacing-2 g-font-bold" >
+                                            <?=$cate['category_name']?>
+                                        </h3>
+                                    </div>
+                                    <?php } ?>
+                                    <?php endforeach;?> 
+                                <?php endif;?>
+                            </div>
+
+                            <div class="row lastest_list">
+                                <?php if(!empty($news_list_all)): $j=0;$col = 3;?>
+                                    <?php 
+                                        foreach($news_list_all as $val):?>
+                                       <div class="col-xs-12 col-sm-6 col-md-3 lastest_list_content_all">
+                                            <div class="lastest_detail_list blog-img">
+                                                <a href="<?=$BASEURL?>/blog/<?=$val['content_id']?>/<?=GF::formatURL($val['content_url'])?>">
+                                                    <div class="blog-img-set">
+                                                         <img src="<?=$BASEURL?>/Images/article/<?=$val['content_img']?>" class="img-responsive" />
+                                                    </div>
+                                                    <div class="caption_detail_lastest">
+                                                        <h5 class="fix-textnewdetail">
+                                                          <?=$val['content_name']?>
+                                                        </h5>
+                                                        <p class="g-color-gray-light-v1">
+                                                           By <?=$val['writer_info']['writer_name']?> • <?=$val['content_date']?>
+                                                        </p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>  
+
+                                         <?php if(($j%$col)==3):?>
+                                            <div class="clearfix"></div>
+                                        <?php endif;?>
+                                    
+                                    <?php $j++; endforeach; ?>
+                                <?php endif;?>
+                                
+                            </div>
+                        </div>
+                    </div>
+            </section>
+
+            <section>
+                <div class="container">
+                    <div class="row pagination_link">
+                    <ul>
+                        <li class="active">
+                        <a href="?pages=1">
+                        1                   
+                         </a>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+            </section>
+        </div>

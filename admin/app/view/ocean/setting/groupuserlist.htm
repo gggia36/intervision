@@ -1,0 +1,107 @@
+<section class="content-header">
+  <h1>
+    Permission
+    <small>Permission Management</small>
+  </h1>  
+</section>
+
+        <!-- Main content -->
+<section class="content" >
+	<div class="row">
+       <div class="col-md-12">
+		  <div class="box box-warning">
+			<div class="box-header with-border">
+			<h3 class="box-title"><?=$groupInfo['role_name']?></h3>
+			  <div class="pull-right">
+			  	<button type="button" class="btn btn-flat btn-warning" onclick="saveUserGroup();"><i class="fa fa-save"></i> Save</button>
+			  </div>
+			  
+			</div>
+			<div class="box-body">
+			<form class="form-horizontal" id="createFrm" name="createFrm">
+			<input type="hidden" name="mode" value="edituser"/>
+			<input type="hidden" name="role_id" value="<?=$groupInfo['role_id']?>"/>
+			   <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th width="10%">Thumb</th>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Status</th>
+                        <th>Select</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($memberList as $members){ ?>
+                      <tr>
+                        <td width="70"><b>IVB<?=str_pad($members['id'],4,'0',STR_PAD_LEFT)?></b></td>
+                        <td align="center">
+                        <!-- <img width="50" src="<?=$BASEURL?>/uploads/userthumbnail/<?=$members['user_thumb']?>" class="img-circle" alt="User Image" /> -->
+                        <img width="50" src="<?=$BASEURL?>/uploads/userthumbnail/default.jpg" class="img-circle" alt="User Image" />
+                        </td>
+                        <td><?=$members['user_name']?>
+                        	<!-- <br />[ <?=$members['user_nickname']?> ] -->
+                        </td>
+                        <td><?=$members['position_name']?></td>
+                        <td>
+                        
+                        
+                        <?php if($members['status']=='P'){  ?>
+                        	<span class="text-red">Probation</span>
+                       	<?php } ?>
+                       	<?php if($members['status']=='E'){  ?>
+                        	<span class="text-green">Permanant</span>
+                       	<?php } ?>
+                       	<?php if($members['status']=='O'){  ?>
+                        	<span class="text-yellow"><?=$members['other_status']?></span>
+                       	<?php } ?>
+                       	
+                       	<?php if($members['active_status']=='C'){  ?>
+                       	<br />
+                       		<span class="text-red">User Retire</span>
+                       	<?php } ?>
+                        </td>
+                        
+                        <td>
+                        	<label>
+                        		<?php 
+                        		$check = 'D';
+                        		foreach($memberListGroup as $ckecks){
+                        			if($ckecks['id']==$members['id']){
+                        				$check = 'A';
+                        			}
+                        		} ?>
+	                        	<input type="checkbox" class="minimal"  name="user_id[]" value="<?=$members['id']?>" 
+	                        	<?php if($check=='A'){ ?>
+	                        	checked=""
+	                        	<?php } ?>
+	                        	/>
+	                        	
+	                        </label>
+                        </td>
+                      </tr>
+                     <?php } ?>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>ID</th>
+                        <th width="10%">Thumb</th>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Status</th>
+                        <th>Select</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+             </form>
+			</div>
+			
+			</div>
+		</div>
+	</div>
+          
+</section>
+<script>
+	var inputused = 'A';
+</script>

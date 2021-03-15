@@ -1,0 +1,91 @@
+<section class="content-header">
+  <h1>
+    User List
+    <small>User Management</small>
+  </h1>  
+</section>
+        <!-- Main content -->
+<section class="content" >
+	<div class="row">
+       <div class="col-md-12">
+		  <div class="box box-warning">
+			<div class="box-header with-border">
+			  <div class="pull-right">
+			  <?php if($button_edit){ ?>
+			  	<a href="#/user/create" class="btn btn-flat btn-warning"><i class="fa fa-plus"></i> Create User</a>
+			  <?php } ?>
+			  </div>
+			  
+			</div>
+			<div class="box-body">
+			   <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>E-Mail</th>
+                        <th>Tel.</th>
+                        <th>Birthday</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($memberList as $members){ ?>
+                      <tr>
+                        <td width="70"><b>CMS<?=str_pad($members['id'],4,'0',STR_PAD_LEFT)?></b></td>
+                        
+                        <td><?=$members['user_name']?>
+                        	
+                        </td>
+                        <td><?=$members['user_email']?></td>
+                        
+                        <td>
+                        <?=$members['user_phone_number']?>
+                        </td>
+                         <th><?=$members['user_birthdate']?></th> 
+                       <td align="center">
+                    			<?php $new_status='C'; ?>
+                    			<?php if($members['active_status']=='C'){ ?>
+                    			<span class="text-red">ระงับให้บริการ</span>
+                    			<?php $new_status='O'; } ?>
+                    			<?php if($members['active_status']=='O'){ ?>
+                    			<span class="text-green"><?=$lang->_active?></span>
+                    			<?php } ?>
+                    			<br />
+                    			<button class="btn btn-flat btn-default btn-xs" data-id="<?=$members['id']?>" data-status="<?=$new_status?>" onclick="setMemberStatus(this);" <?php if($members['active_status']=='C'){ ?> title="<?=$lang->_active?>"<?php }else if($members['active_status']=='O'){ ?>  title="ระงับให้บริการ" <?php }?>><i class="fa fa-refresh"></i></button>
+                    		</td>
+                        <td>
+                        	<?php if($button_edit){ ?>
+                        	<a href="#/user/edit/<?=$members['id']?>/" class="btn btn-success btn-flat"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                        	<?php } ?>
+                        	<!--<?php if($button_view){ ?>
+                        	<a href="#/user/view/<?=$members['id']?>/" class="btn btn-info btn-flat"><i class="fa fa-info"></i> View</a>
+                        	<?php } ?>-->  
+                        	<?php if($button_delete){ ?>
+                        	<button class="btn btn-danger btn-flat user-delete" data-id="<?=$members['id']?>"><i class="fa fa-trash"></i> Delete</button>
+                        	<?php } ?>
+                        </td> 
+                      </tr>
+                     <?php } ?>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>E-Mail</th>
+                        <th>Tel.</th>
+                         <th>Birthday</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+			</div>
+			
+			</div>
+		</div>
+	</div>
+          
+</section>
+

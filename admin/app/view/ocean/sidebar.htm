@@ -1,0 +1,47 @@
+<aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar user panel -->
+          <div class="user-panel">
+            <div class="pull-left image">
+              <!-- <img src="<?=$BASEURL?>/uploads/userthumbnail/<?=$memberinfo['user_thumb']?>" class="img-circle" alt="<?=$memberinfo['user_name']?>" /> -->
+              <img src="<?=$BASEURL?>/uploads/userthumbnail/default.jpg" class="img-circle" alt="<?=$memberinfo['user_name']?>" />
+            </div>
+            <div class="pull-left info">
+              <p><?=$memberinfo['user_name']?></p>
+              <p><?=$memberinfo['role_name']?></p>
+
+              <!--<a href="#"><i class="fa fa-circle text-success"></i> Online</a>-->
+            </div>
+          </div>
+
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+            <?php $countValue = 1; foreach($moduleList as $module){ ?>
+            <?php if(count($module['item'])>=1){ 
+              $lang_key = $module['lang_key'];
+            ?>
+            <li class="<?php if($countValue==1){ ?>active<?php } ?> treeview">
+              <a href="javascript:;">
+                <i class="<?=$module['icon']?>"></i> <span><?=$lang->$lang_key?></span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+              <?php foreach($module['item'] as $mitem){ 
+                $lang_key_item = $mitem['lang_key'];
+              ?>
+                <li ><a href="#/<?=$module['module_prefix']?>/<?=$mitem['item_prefix']?>/"><i class="fa fa-circle-o"></i> <?=$lang->$lang_key_item?></a></li>
+              <?php } ?>
+              </ul>
+            </li>
+            <?php } else{ 
+              $lang_key = $module['lang_key'];
+            ?>
+            <li class="<?php if($countValue==1){ ?>active<?php } ?> single-menu"><a href="#/<?=$module['module_prefix']?>/"><i class="<?=$module['icon']?>"></i> <span><?=$lang->$lang_key?></span></a></li>
+            <?php } ?>
+           	<?php $countValue++; } ?>
+            
+          </ul>
+        </section>
+        <!-- /.sidebar -->
+      </aside>

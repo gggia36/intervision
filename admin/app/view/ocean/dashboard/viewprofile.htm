@@ -1,0 +1,107 @@
+<style>
+	.form-group .control-label {
+		text-align: left;
+	}
+	
+</style>
+
+
+			
+			<div class="box-body">
+			
+				<div class="col-sm-4">
+					
+                    <div class="form-group" style="text-align: center;">
+                      <!--<label for="inputEmail3" class="col-sm-4 control-label">Image</label>-->
+                      <?php if(!empty($memberinfomation['user_thumb'])){ ?>
+                      <div class="col-sm-12" style="text-align: center;">
+                      	<img style="max-width: 100%;" src="<?=$BASEURL?>/uploads/userthumbnail/<?=$memberinfomation['user_thumb']?>"/>
+                      </div>
+                      <?php } ?>
+                      <h2>IVB<?=str_pad($memberinfomation['id'],4,'0',STR_PAD_LEFT)?></h2>
+                    </div>
+				</div>
+				<div class="col-sm-8">
+					<div class="form-group">
+                      <label for="user_name" class="col-sm-4 control-label">Name</label>
+                      <div class="col-sm-8">
+                        <h4><?=$memberinfomation['user_name']?></h4>
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                      <label for="user_nickname" class="col-sm-4 control-label">Nick Name</label>
+                      <div class="col-sm-8">
+                        <h4><?=$memberinfomation['user_nickname']?></h4>
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                      <label for="user_email" class="col-sm-4 control-label">Email</label>
+                      <div class="col-sm-8">
+                        <h4><?=$memberinfomation['user_email']?></h4>
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                      <label for="user_phone_number" class="col-sm-4 control-label">Phone Number</label>
+                      <div class="col-sm-8">
+                        <h4><?=$memberinfomation['user_phone_number']?></h4>
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                      <label for="user_position" class="col-sm-4 control-label">Position</label>
+                      <div class="col-sm-8">
+                      
+                        <h4>
+                        	<?php foreach($positionList as $position){ ?>
+                        	<?php if($memberinfomation['position_id']==$position['id']){ ?><?=$position['position_name']?><?php } ?>
+                        	<?php } ?>
+                        </h4>
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                      <label for="birthdate" class="col-sm-4 control-label">Birth Date</label>
+                      <div class="col-sm-8">
+                       <h4> 
+	                      <?php
+	                      	$bdate = date('d-m-Y', strtotime($memberinfomation['user_birthdate']));
+	                      	if($memberinfomation['user_birthdate']==''){$bdate='';}
+	                       ?>
+	                      <?=$bdate?>
+	                    </h4>
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                      <label for="startdate" class="col-sm-4 control-label">Start Date</label>
+                      <div class="col-sm-8">
+                        
+	                     <h4> 
+	                      <?php
+	                      	$sdate = date('d-m-Y', strtotime($memberinfomation['user_start_date']));
+	                      	if($memberinfomation['user_start_date']==''){$sdate='';}
+	                       ?>
+	                      <?=$sdate?>
+	                    </h4>
+                      </div>
+                    </div>
+				</div>
+			   
+                  
+                    
+                    
+                    
+                    
+                    <div class="clearfix"></div>
+                   
+                    
+                    
+                    
+                    
+                
+			</div>
+
+

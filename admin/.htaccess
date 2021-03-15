@@ -1,0 +1,19 @@
+#DirectoryIndex index.html index.php
+
+#php_value magic_quotes 0
+#php_flag magic_quotes off
+#php_value magic_quotes_gpc 0
+#php_flag magic_quotes_gpc off
+
+#Options +FollowSymLinks
+RewriteEngine On
+RewriteBase /admin/
+
+## never rewrite for existing files, directories and links
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteCond %{REQUEST_FILENAME} !\.(gif|jp?g|png|js|css|swf|php|ico)$
+
+
+RewriteRule .* index.php [L,QSA]

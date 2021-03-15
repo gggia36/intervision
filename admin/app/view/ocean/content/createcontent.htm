@@ -1,0 +1,135 @@
+<script>
+ $('.datepicker').datepicker({
+        format: 'yyyy-mm-dd',
+    });
+</script>
+
+<section class="content-header">
+  <h1>
+   	Content
+    <small>ระบบจัดการเนื้อหา</small>
+  </h1>
+</section>
+
+        <!-- Main content -->
+
+
+<section class="content" >
+	<div class="row">
+       <div class="col-md-12">
+		  <div class="box box-warning">
+			<div class="box-header with-border">
+			<?php if(!is_array($contentInfo)){ ?>
+			  <h3 class="box-title">สร้างเนื้อหา</h3>
+			 <?php }else{ ?>
+			 	<h3 class="box-title">แก้ไขเนื้อหา</h3>
+			 <?php } ?>
+			</div>
+			 <form class="form-horizontal" id="contFrm" name="contFrm">
+			 <?php if(!is_array($contentInfo)){ ?>
+			 <input type="hidden" name="mode" value="createcontent"/>
+			 <input type="hidden" name="content_id" id="content_id" value="0"/>
+			 <?php }else{ ?>
+			 <input type="hidden" name="mode" value="editcontent"/>
+			 <input type="hidden" name="content_id" value="<?=$contentInfo['content_id']?>"/>
+			 <?php } ?>
+			<div class="box-body">
+
+				<div class="col-md-12"> 
+		          <!-- Custom Tabs -->
+		          <div class="">
+
+		              	
+	               
+	                    <?php if($contentInfo['content_thumb']!=''){ ?>
+		                <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label"></label>
+	                      <div class="col-sm-7">
+	                        <img src="<?=$BASEURL_F?>/Images/content/<?=$contentInfo['content_thumb']?>?<?=time()?>" class="img-responsive"/>
+	                      </div>
+	                    </div>
+		                <?php } ?>
+		                <div class="form-group" id="type-img-<?=$langL['lang_prefix']?>">
+	                      <label for="exp_title" class="col-sm-3 control-label">รูปภาพ</label>
+	                      <div class="col-sm-7">
+	                        <input type="file"  name="content_thumb" id="content_thumb" onchange="checksizefile(this);">
+	                        <input type="hidden" name="old_thumb" value="<?=$contentInfo['content_thumb']?>"/>
+	                        <p class="help-block"><?=$lang->_thumb_desc?></p>
+	                        <small style="color: #AAA;">ขนาดภาพหน้าหลักส่วนบนสุด : 1920x419 px. :: .png ,.jpeg</small>
+	                        <div class="clearfix"></div>
+	                      </div>
+	                    </div>
+
+	                    <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label">ชื่อเนื้อหา <span style="color: red;">*</span></label>
+	                      <div class="col-sm-7">
+	                        <input type="text" class="form-control" id="content_name" name="content_name" placeholder="<?=$lang->content_content_name?>" value="<?=$contentInfo['content_name']?>">
+	                      </div>
+	                    </div>
+							
+	                  
+						<div class="form-group">
+	                      <label for="exp_desc" class="col-sm-3 control-label">รายละเอียด</label>
+	                      <div class="col-sm-8">
+
+	                        <textarea class="form-control summernote" id="content_desc" name="content_desc" placeholder="<?=$lang->content_content_desc?>"><?=$contentInfo['content_desc']?></textarea>
+	                      </div>
+	                    </div>
+
+	                    <div class="form-group" style="padding-bottom: 20px;">
+	                      	<label for="exp_title" class="col-sm-3 control-label">Link</label>
+	                      	<div class="col-sm-7">
+	                        	<input type="text"  class="form-control" name="content_link" value="<?=$contentInfo['content_link']?>" >
+	                      	</div>
+	                    </div>
+
+	                    <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label"><?=$lang->_meta_title?> <span style="color: red;">*</span></label>
+	                      <div class="col-sm-7">
+	                        <input type="text" class="form-control" id="meta_title" name="meta_title" placeholder="<?=$lang->_meta_title?>" value="<?=$contentInfo['meta_title']?>">
+	                      </div>
+	                    </div>
+	                    <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label"><?=$lang->_meta_keyword?> <span style="color: red;">*</span></label>
+	                      <div class="col-sm-7">
+	                        <input type="text" class="form-control" id="meta_keyword" name="meta_keyword" placeholder="<?=$lang->_meta_keyword?>" value="<?=$contentInfo['meta_keyword']?>">
+	                      </div>
+	                    </div>
+	                    <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label"><?=$lang->_meta_desc?> <span style="color: red;">*</span></label>
+	                      <div class="col-sm-7">
+	                        <input type="text" class="form-control" id="meta_desc" name="meta_desc" placeholder="<?=$lang->_meta_desc?>" value="<?=$contentInfo['meta_desc']?>">
+	                      </div>
+	                    </div>
+
+
+		              </div>
+
+		        </div>
+		     
+
+            </div>
+
+            <div class="box-footer" style="">
+
+			<a href="#/content/contentlist/" class="btn btn-success pull-right"><?=$lang->_backtolist?></a>
+
+            <button type="reset" class="btn btn-default"><?=$lang->_reset?></button>
+            <button type="button" class="btn btn-primary" id="" onclick="saveContentContent();"> <i class="fa fa-save"></i> <?=$lang->_save?></button>
+
+            </div><!-- /.box-footer -->
+ 			</form>
+			</div>
+
+
+			</div>
+		</div>
+
+
+</section>
+
+<script>
+
+      callEditor('.summernote');
+
+</script>

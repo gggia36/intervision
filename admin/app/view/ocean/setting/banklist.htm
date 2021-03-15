@@ -1,0 +1,127 @@
+<section class="content-header">
+  <h1>
+    รายการธนาคาร
+    <small>จัดการรายการธนาคาร</small>
+  </h1>  
+</section>
+
+        <!-- Main content -->
+<section class="content" >
+	<div class="row">
+		
+       <div class="col-md-12">
+		  <div class="box box-warning">
+			<div class="box-header with-border">
+			<h3 class="box-title">รายการธนาคาร</h3>
+			  <div class="pull-right">
+			  <?php if($button_edit){ ?>
+			  	<a href="#/setting/createbanklist/" class="btn btn-flat btn-warning"><i class="fa fa-plus"></i> เพิ่มรายการใหม่</a>
+			  <?php } ?>
+			  </div>
+			  
+			</div>
+			<div class="box-body table-responsive">
+				<div style="margin-bottom: 20px;">
+                    <form class="form-horizontal" id="clearFrm" name="clearFrm">
+						<input type="hidden" name="mode" value="clearcategory">
+					</form>
+					<form class="form-horizontal" id="searchFrm" name="searchFrm">
+					<input type="hidden" name="mode" value="searchBankList"/>
+                    <div class="col-sm-5 ">
+                    	<div class="form-group">
+	                      <label for="leave_title" class="col-sm-3 control-label">ชื่อธนาคาร </label>
+	                      <div class="col-sm-9">                       
+		                      <input type="text" class="form-control " name="bank_name" placeholder="ชื่อธนาคาร" value="<?=$SESSION['banklist']['bank_name']?>">
+	                      </div>
+	                    </div>
+                    </div>
+                    <div class="col-sm-5 ">
+                    	<div class="form-group">
+	                      <label for="leave_title" class="col-sm-3 control-label"><?=$lang->_status?></label>
+	                      <div class="col-sm-9">
+	                       <select class="form-control" id="active_status" name="active_status">
+	                       			<option value="">All</option>
+		                      		<option value="O" <?php if($SESSION['banklist']['active_status']=='O'){ ?>selected=""<?php } ?>><?=$lang->_active?></option>
+		                      		<option value="C" <?php if($SESSION['banklist']['active_status']=='C'){ ?>selected=""<?php } ?>><?=$lang->_inactive?></option>
+		                      	</select>
+	                      </div>
+	                    </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-12 text-center">
+                    	<button type="button" class="btn btn-warning " onclick="clearBankList();">Reset</button>
+                    	<button type="button" class="btn btn-primary " onclick="searchBankList();">Search</button>
+                    </div>
+                    </form>
+                    <div class="clearfix"></div>
+               </div>
+			   <table id="example1" class="table table-bordered table-striped" >
+                    <thead>
+                      <tr>
+                    	<th><?=$lang->_sort?></th>
+                        <th><?=$lang->_thumb?></th>
+                        <th>ชื่อธนาคาร</th>
+                        <th><?=$lang->_status?></th>
+                        <th><?=$lang->_update?></th>
+                        <th><?=$lang->_action?></th>
+                      </tr>
+                    </thead>
+                    <?php foreach($categoryList as $list){ ?>
+                    	<tr>
+                    		<td width="10%">
+                    			<input type="text" data-id="<?=$list['bank_id']?>" onchange="sortBanklist(this);" class="form-control input-xs text-center" onkeypress="numberonly(event);" value="<?=$list['bank_sort']?>" />
+                    		</td>
+                    		<td width="15%">
+                    			<img src="<?=$BASEURL_F?>/uploads/banklist/<?=$list['bank_image']?>" style="max-height: 50px;"/>
+                    		</td>
+                    		<td>
+                    			<?=$list['bank_name']?>
+                    		</td>
+                    		<td align="center">
+                    			<?php $new_status='C'; ?>
+                    			<?php if($list['active_status']=='C'){ ?>
+                    			<span class="text-red"><?=$lang->_inactive?></span>
+                    			<?php $new_status='O'; } ?>
+                    			<?php if($list['active_status']=='O'){ ?>
+                    			<span class="text-green"><?=$lang->_active?></span>
+                    			<?php } ?>
+                    			<br />
+                    			<button class="btn btn-flat btn-default btn-xs" data-id="<?=$list['bank_id']?>" data-status="<?=$new_status?>" onclick="setBankListStatus(this);"><i class="fa fa-refresh"></i></button>
+                    		</td>
+                    		<td align="center">
+                    			<?=date("d-m-Y",strtotime($list['update_dtm']))?><br />
+                    			<?=date("H:i:s",strtotime($list['update_dtm']))?>
+                    		</td>
+                    		<td align="center">
+                    			<a href="#/setting/editbanklist/<?=$list['bank_id']?>/" class="btn btn-flat btn-success btn-sm"><i class="fa fa-edit"></i></a>
+                    			<button type="button" onclick="deleteBanklist('<?=$list['bank_id']?>');" class="btn btn-flat btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                    		</td>
+                    	</tr>
+                    <?php } ?>
+                    <tfoot>
+                      <tr>
+                        <th><?=$lang->_sort?></th>
+                        <th><?=$lang->_thumb?></th>
+                        <th>ชื่อธนาคาร</th>
+                        <th><?=$lang->_status?></th>
+                        <th><?=$lang->_update?></th>
+                        <th><?=$lang->_action?></th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                  <nav class="pull-right" style="margin-right: 3%;">
+					  <ul class="pagination pagination-md">
+					    <?php for($i=1;$i<=$allPage;$i++){ ?>
+					    <li <?php if($currpage==$i){ ?>class="active"<?php } ?>><a href="#/setting/banklist/?page=<?=$i?>"><?=$i?></a></li>
+					    <?php } ?>
+
+					  </ul>
+					</nav>
+			</div>
+			
+			</div>
+		</div>
+	</div>
+          
+</section>
+

@@ -1,0 +1,178 @@
+<section class="content-header">
+  <h1>
+    ข่าวสาร
+    <small>ระบบจัดการข่าวสาร</small>
+  </h1>
+</section>
+
+        <!-- Main content -->
+<section class="content" >
+	<div class="row">
+
+       <div class="col-md-12">
+		  <div class="box box-warning">
+			<div class="box-header with-border">
+			<h3 class="box-title">รายการข่าวสาร</h3>
+			  <div class="pull-right">
+			  <?php if($button_edit){ ?>
+			  	<a href="#/news/create_news" class="btn btn-flat btn-warning"><i class="fa fa-plus"></i> สร้างข่าวสาร</a>
+			  <?php } ?>
+			  </div>
+
+			</div>
+			<div class="box-body table-responsive">
+				<div style="margin-bottom: 20px;">
+                    <form class="form-horizontal" id="clearFrm" name="clearFrm">
+						<input type="hidden" name="mode" value="clearcontent">
+					</form>
+					<form class="form-horizontal" id="searchFrm" name="searchFrm">
+					<input type="hidden" name="mode" value="searchcontent"/>
+                    <div class="col-sm-3 ">
+                    	<div class="form-group">
+	                      <label for="leave_title" class="col-sm-3 control-label">ชื่อ </label>
+	                      <div class="col-sm-9">
+		                      <input type="text" class="form-control " name="content_name" placeholder="<?=$lang->content_content_name?>" value="<?=$_SESSION['article_content']['content_name']?>">
+	                      </div>
+	                    </div>
+                    </div>
+                    <div class="col-sm-3 ">
+                        <div class="form-group">
+                          <label for="leave_title" class="col-sm-4 control-label">หมวดหมู่ </label>
+                          <div class="col-sm-8" style="margin-top: 3px;">
+                              <select name="category_id" id="category_id" class="select2 form-control">
+                                <option value="">::-- เลือกหมวดหมู่ --::</option>
+                            <?php 
+                                if(!empty($categoryList)){
+                                    foreach($categoryList as $category){ ?>
+
+                                    <option value="<?=$category['category_id']?>" <?php if($category['category_id']==$_SESSION['article_content']['category_id']):?> selected="selected"<?php endif;?>><?=$category['category_name']?></option>
+                            <?php 
+                                    }
+                                }
+                            ?>
+                            </select>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 ">
+                        <div class="form-group">
+                          <label for="leave_title" class="col-sm-4 control-label">ผู้เขียน </label>
+                          <div class="col-sm-8" style="margin-top: 3px;">
+                              <select name="writer_id" id="writer_id" class="select2 form-control">
+                                    <option value="">::-- เลือกผู้เขียน --::</option>
+                                <?php 
+                                    if(!empty($writerList)){
+                                        foreach($writerList as $writer){ ?>
+
+                                        <option value="<?=$writer['writer_id']?>" <?php if($writer['writer_id']==$SESSION['article_content']['writer_id']):?> selected="selected"<?php endif;?>><?=$writer['writer_name']?></option>
+                                <?php 
+                                        }
+                                    }
+                                ?>
+                                </select>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 ">
+                    	<div class="form-group">
+	                      <label for="leave_title" class="col-sm-3 control-label"><?=$lang->_status?></label>
+	                      <div class="col-sm-9">
+	                       <select class="form-control" id="status" name="status">
+	                       			<option value="">All</option>
+		                      		<option value="O" <?php if($_SESSION['article_content']['status']=='O'){ ?>selected=""<?php } ?>><?=$lang->_active?></option>
+		                      		<option value="C" <?php if($_SESSION['article_content']['status']=='C'){ ?>selected=""<?php } ?>><?=$lang->_inactive?></option>
+		                      	</select>
+	                      </div>
+	                    </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <?php if(!is_array($SESSION['article_content']['category_id'])){$SESSION['article_content']['category_id']=array();} ?>
+
+                    <div class="col-sm-12" align="center" style="margin-top: 20px;">
+                    	<button type="button" class="btn btn-warning " onclick="clearContentContent();">Reset</button>
+                    	<button type="button" class="btn btn-primary " onclick="searchContentContent();">Search</button>
+                    </div>
+                    </form>
+                    <div class="clearfix"></div>
+               </div>
+			   <table id="example1" class="table table-bordered table-striped" >
+                    <thead>
+                      <tr>
+                    	<th style="text-align: center !important;"><?=$lang->_sort?></th>
+                    	<th><?=$lang->_thumb?></th>
+                        <th>หมวดหมู่</th>
+                        <th>ผู้เขียน</th>
+                        <th><?=$lang->_name?></th>
+                        <!-- <th style="text-align: center !important;">#อ่าน</th> -->
+                        <th style="text-align: center !important;"><?=$lang->_status?></th>
+                        <th style="text-align: center !important;"><?=$lang->_update?></th>
+                        <th style="text-align: center !important;"><?=$lang->_action?></th>
+                      </tr>
+                    </thead>
+                    <?php $i=1;foreach($contentList as $list){ ?>
+                    	<tr>
+                    		<td width="10%" style="text-align: center !important;">
+                    			<input type="text" data-id="<?=$list['content_id']?>" onchange="sortContentContent(this);" class="form-control input-xs text-center" onkeypress="numberonly(event);" value="<?=$list['sort']?>" />
+                    		</td>
+							<td width="14%">
+                    			<img src="<?=$BASEURL_F?>/Images/article/<?=$list['content_thumb']?>" style="max-height: 50px;"/>
+                    		</td>
+                            <td width="10%">
+                                <?php if(!empty($list['category_list'])):?>
+                                    <?php foreach($list['category_list'] as $val):?>
+                                        <?=$val?><br/>
+                                    <?php endforeach;?>
+                                <?php endif;?>
+                               
+                            </td>
+                            <td width="15%">
+                                <?=$list['writer_name']?>
+                            </td>
+                    		<td width="20%">
+                    			<?=$list['content_name']?>
+                    		</td >
+							<!-- <td align="center">
+                    			<?=$list['content_view']?>
+                    		</td> -->
+                    		<td align="center">
+                    			<?php $new_status='C'; ?>
+                    			<?php if($list['status']=='C'){ ?>
+                    			<span class="text-red"><?=$lang->_inactive?></span>
+                    			<?php $new_status='O'; } ?>
+                    			<?php if($list['status']=='O'){ ?>
+                    			<span class="text-green"><?=$lang->_active?></span>
+                    			<?php } ?>
+                    			<br />
+                    			<button class="btn btn-flat btn-default btn-xs" data-id="<?=$list['content_id']?>" data-status="<?=$new_status?>" onclick="setContentcontentStatus(this);"><i class="fa fa-refresh"></i></button>
+                    		</td>
+                    		<td align="center">
+                    			<?=date("d-m-Y",strtotime($list['update_dtm']))?><br />
+                    			<?=date("H:i:s",strtotime($list['update_dtm']))?>
+                    		</td>
+                    		<td align="center">
+                    		<?php if($button_edit){ ?>
+                    			<a href="#/news/edit_new/<?=$list['content_id']?>" class="btn btn-flat btn-success btn-sm"><i class="fa fa-edit"></i></a>
+                    		<?php } ?>
+                    		<?php if($button_delete){ ?>
+                    			<button type="button" onclick="deleteContent('<?=$list['content_id']?>');" class="btn btn-flat btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                    		<?php } ?>
+                    		</td>
+                    	</tr>
+                    <?php } ?>
+
+                  </table>
+                  <nav class="pull-right" style="margin-right: 3%;">
+					  <ul class="pagination pagination-md">
+					    <?php for($i=1;$i<=$allPage;$i++){ ?>
+					    <li <?php if($currpage==$i){ ?>class="active"<?php } ?>><a href="#/news/newslist/?page=<?=$i?>"><?=$i?></a></li>
+					    <?php } ?>
+
+					  </ul>
+					</nav>
+			</div>
+
+			</div>
+		</div>
+	</div>
+
+</section>

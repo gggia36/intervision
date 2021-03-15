@@ -1,0 +1,240 @@
+<div class="wrapper fade-in">
+            <section class="g-py-100--xl g-py-30--lg g-py-100--sm hidden-xs hidden-sm" id="img-bg-contact">
+                <h1 class="text-center g-font-weight-700 g-font-size-42--lg g-font-size-36 g-mb-50 g-color-white"> <?=$lang['label_contact']?></h1>
+                <div class="container g-py-70--md g-py-40">
+                    <div class="row">
+                        <!-- <div class="col-lg-4 col-md-6 col-sm-7 col-xs-8 g-pa-50 g-shadow g-mx-60--xl g-mx-0--lg "> -->
+                        <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 g-pa-50 g-shadow">
+                            <h3 class="g-mb-50 g-line-height-1_3 g-font-weight-700 text-sm-center text-center"><span class="g-color-blue">Contact&nbsp;</span>our sales team</h3>
+                             <form id="FormAdd" action="" method="post" name="fm_data">
+                                <label for="name" class="inp">
+                                    <input class="g-bg-white" type="text" id="name" name="name" placeholder="&nbsp;" required oninvalid="this.setCustomValidity('Please fill in this field.')" oninput="this.setCustomValidity('')" />
+                                    <span class="label"><?=$lang['label_Contact_name']?></span>
+                                    <span class="border">
+                                        <i class="fa fa-check"></i>
+                                    </span>
+                                </label>
+
+                                <label for="company" class="inp">
+                                    <input class="g-bg-white" type="email" id="email" name="email" placeholder="&nbsp;" required oninvalid="this.setCustomValidity('Please fill in this field.')" oninput="this.setCustomValidity('')" />
+                                    <span class="label"><?=$lang['label_Contact_mail1']?></span>
+                                    <span class="border">
+                                        <i class="fa fa-check"></i>
+                                    </span>
+                                </label>
+
+                                <label for="phone" class="inp">
+                                    <input class="g-bg-white" type="text" id="phone" name="phone" placeholder="&nbsp;" required oninvalid="this.setCustomValidity('Please fill in this field.')" oninput="this.setCustomValidity('')" />
+                                    <span class="label"><?=$lang['label_Contact_Tell']?></span>
+                                    <span class="border">
+                                        <i class="fa fa-check"></i>
+                                    </span>
+                                </label>
+
+                                <label for="messages" class="inp">
+                                    <textarea class="g-bg-white" type="text" placeholder="&nbsp;" id="messages" name="messages" required oninvalid="this.setCustomValidity('Please fill in this field.')" oninput="this.setCustomValidity('')"></textarea>
+                                    <span class="label"><?=$lang['label_Contact_message']?></span>
+                                    <span class="border">
+                                        <i class="fa fa-check"></i>
+                                    </span>
+                                </label>
+                                <div class="margin-left-right g-pl-80--lg g-pl-100">
+                                    <div class="g-recaptcha" data-sitekey="6LcXgv0UAAAAAFFRdTljv8cyxQ1Jn4lONm_KuYgW" required></div>
+                                    <br />
+                                </div>
+                                <button type="submit" class="btn btn-lg g-bg-bluegray-gradient-opacity-v1 g-mb-50 g-font-size-20 g-width-100x g-color-white letter-spacing-2" data-toggle="modal" data-target="#success"><?=$lang['label_Contact_send']?></button>
+
+
+                            </form>
+                        </div>
+                        <div class="col-lg-5 col-md-6 col-lg-offset-1 col-sm-offset-0 col-sm-12 col-xs-12">
+                            <div>
+                                <h3 class="g-color-white margin-left-104"><?=$lang['label_Contact_topic1']?></h3>
+                                <table class="margin-left-104">
+                                    <tbody>
+                                        <tr>
+                                            <td><img src="<?=$BASEURL?>/assets/images/icon-navbar/contact-tel.png" /></td>
+                                            <td class="g-color-white g-font-bold">
+                                                <span class="g-font-size-13">TEL:</span>
+                                                <p class="g-font-size-25--md g-font-size-12"><?=$lang['label_Contact_Tell1']?></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="<?=$BASEURL?>/assets/images/icon-navbar/contact-call.png" /></td>
+                                            <td class="g-color-white g-font-bold">
+                                                <span class="g-font-size-13">MOBILE:</span>
+                                                <p class="g-font-size-25--md g-font-size-12"><?=$lang['label_Contact_phone']?></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="<?=$BASEURL?>/assets/images/icon-navbar/contact-time.png" /></td>
+                                            <td class="g-color-white g-font-bold">
+                                                <span class="g-font-size-13">OPEN:</span>
+                                                <p class="g-font-size-25--md g-font-size-12"><?=$lang['label_Contact_time']?></p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div>
+                                <h3 class="g-color-white margin-left-104"><?=$lang['label_Contact_topic2']?></h3>
+                                <table class="margin-left-104">
+                                    <tbody>
+                                        <tr>
+                                            <td><img src="<?=$BASEURL?>/assets/images/icon-navbar/contact-line.png" /></td>
+                                            <td class="g-color-white g-font-bold">
+                                                <span class="g-font-size-13">LINE ID:</span><br />
+                                                <a href="https://lin.ee/66bLl22" target="_blank" class="g-font-size-25 g-font-size-25--md g-color-white"><?=$lang['label_Contact_line']?></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="<?=$BASEURL?>/assets/images/icon-navbar/contact-facebook.png" /></td>
+                                            <td class="g-color-white g-font-bold">
+                                                <span class="g-font-size-13">FACEBOOK:</span><br />
+                                                <a href="https://www.facebook.com/intervisionbusiness/" target="_blank" class="g-font-size-25 g-font-size-25--md g-color-white"><?=$lang['label_Contact_face']?></a>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="<?=$BASEURL?>/assets/images/icon-navbar/contact-mail.png" /></td>
+                                            <td class="g-color-white g-font-bold">
+                                                <span class="g-font-size-13">E-MAIL:</span><br />
+                                                <a  class="g-font-size-25 g-font-size-25--md g-font-size-12 g-color-white"><?=$lang['label_Contact_mail2']?></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- mobile -->
+            <section class="visible-xs visible-sm" id="img-bg-contact">
+                <!-- <img src="<?=$BASEURL?>/assets/images/show/img17.png" class="img-responsive position-contact-sm"> -->
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <div class="g-mb-70">
+                            <h1 class="text-center g-font-weight-700 g-font-size-42--lg g-font-size-36 g-color-white"><?=$lang['label_contact']?></h1>
+                        </div>
+                        <div>
+                            <h3 class="g-color-white g-mx-60 g-font-size-30"><?=$lang['label_Contact_topic1']?></h3>
+                            <table class="margin-left-right">
+                                <tbody>
+                                    <tr>
+                                        <td><img src="<?=$BASEURL?>/assets/images/icon-navbar/contact-tel.png" /></td>
+                                        <td class="g-color-white g-font-bold">
+                                            <span class="g-font-size-13">TEL:</span><br />
+                                            <a href="tel:02-017-7775" class="g-font-size-22 g-font-size-25--md g-color-white"><?=$lang['label_Contact_Tell1']?></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="<?=$BASEURL?>/assets/images/icon-navbar/contact-call.png" /></td>
+                                        <td class="g-color-white g-font-bold">
+                                            <span class="g-font-size-13">MOBILE:</span><br />
+                                            <a href="tel:092-681-3939" class="g-font-size-22 g-font-size-25--md g-color-white"><?=$lang['label_Contact_phone']?></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="<?=$BASEURL?>/assets/images/icon-navbar/contact-time.png" /></td>
+                                        <td class="g-color-white g-font-bold">
+                                            <span class="g-font-size-13">OPEN:</span>
+                                            <p class="g-font-size-22 g-font-size-25--md"><?=$lang['label_Contact_time']?></p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div>
+                            <h3 class="g-color-white g-mx-60 g-font-size-30"><?=$lang['label_Contact_topic2']?></h3>
+                            <table class="margin-left-right">
+                                <tbody>
+                                    <tr>
+                                        <td><img src="<?=$BASEURL?>/assets/images/icon-navbar/contact-line.png" /></td>
+                                        <td class="g-color-white g-font-bold">
+                                            <span class="g-font-size-13">LINE ID:</span><br/>
+                                            <a href="https://lin.ee/66bLl22" target="_blank" class="g-font-size-22 g-font-size-25--md g-color-white"><?=$lang['label_Contact_line']?></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="<?=$BASEURL?>/assets/images/icon-navbar/contact-facebook.png" /></td>
+                                        <td class="g-color-white g-font-bold">
+                                            <span class="g-font-size-13">FACEBOOK:</span><br />
+                                            <a href="https://www.facebook.com/intervisionbusiness/" target="_blank" class="g-font-size-22 g-font-size-25--md g-color-white"><?=$lang['label_Contact_face']?></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="<?=$BASEURL?>/assets/images/icon-navbar/contact-mail.png" /></td>
+                                        <td class="g-color-white g-font-bold">
+                                            <span class="g-font-size-13">E-MAIL:</span><br />
+                                            <a  class="g-font-size-22 g-font-size-25--md g-color-white"><?=$lang['label_Contact_mail2']?></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xs-12 g-pa-50 g-shadow">
+                        <h3 class="g-mb-50 g-line-height-1_3 g-font-weight-700 text-sm-center text-center g-font-size-36"><span class="g-color-blue">Contact&nbsp;</span>our sales team</h3>
+                        <form id="FormAdd" action="" method="post" name="fm_data">
+                                <label for="name" class="inp">
+                                    <input class="g-bg-white" type="text" id="name" name="name" placeholder="&nbsp;" required oninvalid="this.setCustomValidity('Please fill in this field.')" oninput="this.setCustomValidity('')" />
+                                    <span class="label"><?=$lang['label_Contact_name']?></span>
+                                    <span class="border">
+                                        <i class="fa fa-check"></i>
+                                    </span>
+                                </label>
+
+                                <label for="company" class="inp">
+                                    <input class="g-bg-white" type="email" id="email" name="email" placeholder="&nbsp;" required oninvalid="this.setCustomValidity('Please fill in this field.')" oninput="this.setCustomValidity('')" />
+                                    <span class="label"><?=$lang['label_Contact_mail1']?></span>
+                                    <span class="border">
+                                        <i class="fa fa-check"></i>
+                                    </span>
+                                </label>
+
+                                <label for="phone" class="inp">
+                                    <input class="g-bg-white" type="text" id="phone" name="phone" placeholder="&nbsp;" required oninvalid="this.setCustomValidity('Please fill in this field.')" oninput="this.setCustomValidity('')" />
+                                    <span class="label"><?=$lang['label_Contact_Tell']?></span>
+                                    <span class="border">
+                                        <i class="fa fa-check"></i>
+                                    </span>
+                                </label>
+
+                                <label for="messages" class="inp">
+                                    <textarea class="g-bg-white" type="text" placeholder="&nbsp;" id="messages" name="messages" required oninvalid="this.setCustomValidity('Please fill in this field.')" oninput="this.setCustomValidity('')"></textarea>
+                                    <span class="label"><?=$lang['label_Contact_message']?></span>
+                                    <span class="border">
+                                        <i class="fa fa-check"></i>
+                                    </span>
+                                </label>
+                                <div class="margin-left-right g-pl-80--lg g-pl-100">
+                                    <div class="g-recaptcha" data-sitekey="6LcXgv0UAAAAAFFRdTljv8cyxQ1Jn4lONm_KuYgW" required></div>
+                                    <br />
+                                </div>
+                                <button type="submit" class="btn btn-lg g-bg-bluegray-gradient-opacity-v1 g-mb-50 g-font-size-20 g-width-100x g-color-white letter-spacing-2 btn_send_contact" data-toggle="modal" data-target="#success"><?=$lang['label_Contact_send']?></button>
+
+
+                            </form>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="container-fluid g-px-0 g-px-20--md">
+                    <iframe
+                        class="contact-iframe"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.7152188968985!2d100.59372711534671!3d13.67507280275001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e2a1a58f76493d%3A0x598b54255a1dd29f!2z4Lia4Lij4Li04Lip4Lix4LiXIOC4hOC4reC4oeC5gOC4i-C5gOC4p-C5iOC4mSDguIjguLPguIHguLHguJQgKOC4oeC4q-C4suC4iuC4mSk!5e0!3m2!1sth!2sth!4v1589170648740!5m2!1sth!2sth"
+                        frameborder="0"
+                        style="border: 0;"
+                        allowfullscreen=""
+                        aria-hidden="false"
+                        tabindex="0"
+                    ></iframe>
+                </div>
+            </section>
+        </div>
+

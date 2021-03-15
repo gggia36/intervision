@@ -1,0 +1,115 @@
+<style>
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 40px;
+        height: 20px;
+        margin-top: 7px;
+    }
+    
+    .switch input {
+        display: none;
+    }
+    
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+    
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 14px;
+        width: 14px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+    
+    input:checked+.slider {
+        background-color: #2196F3;
+    }
+    
+    input:focus+.slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+    
+    input:checked+.slider:before {
+        -webkit-transform: translateX(20px);
+        -ms-transform: translateX(20px);
+        transform: translateX(20px);
+    }
+    /* Rounded sliders */
+    
+    .slider.round {
+        border-radius: 34px;
+    }
+    
+    .slider.round:before {
+        border-radius: 50%;
+    }
+</style>
+<section class="content-header">
+    <h1>
+        ตั้งค่าทั่วไป
+        <small>ระบบจัดการ ตั้งค่าทั่วไป</small>
+    </h1>
+</section>
+<!-- Main content -->
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-warning">
+                <div class="box-header with-border">
+                    <h3 class="box-title">ตั้งค่าทั่วไป</h3>
+                </div>
+                <form class="form-horizontal" id="contFrm" name="contFrm">
+
+                    <input type="hidden" name="mode" value="editgeneral_gray" />
+                    <input type="hidden" name="general_id" id="general_id" value="<?=$generalInfo['general_id']?>" />
+
+                    <div class="box-body">
+                        <div class="col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="exp_title" class="col-sm-3 control-label">ปิด/เปิด โหมดสีเทา</label>
+                                <div class="col-sm-7">
+                                    <label class="switch">
+										<input type="checkbox" name="general_gray" id="general_gray" <?php if($generalInfo['general_gray']=="Y"){?> checked <?php }?> onchange="saveContent();">
+										<span class="slider round"></span>
+									</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="box-footer">
+
+                            <a href="#/setting/general_web/" class="btn btn-success pull-right"><?=$lang->_backtolist?></a>
+
+                            <button type="reset" class="btn btn-default"><?=$lang->_reset?></button>
+                            <!-- <button type="button" class="btn btn-primary" id="" onclick="saveContent();"> <i class="fa fa-save"></i> <?=$lang->_save?></button> -->
+
+                        </div>
+                        <!-- /.box-footer -->
+                </form>
+                </div>
+
+
+            </div>
+        </div>
+
+
+</section>
+
+<script>
+    callEditor('.summernote');
+</script>

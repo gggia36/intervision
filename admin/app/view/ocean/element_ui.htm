@@ -1,0 +1,81 @@
+<div class="modal fade" id="preloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body" style="text-align: center">
+        <h5>Please wait...</h5>
+        <img src="<?=$BASEURL?>/assets/images/preload.GIF"/>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- <div class="newPreload" id="newPreload" style="position: fixed; top: 50%;right: 50%;display: none;z-index: 500;text-align: center;background-color: white;padding: 10px;">
+
+	<img src="<?=$BASEURL?>/assets/images/preload.GIF"/>
+	<br />
+	<h5>Please wait...</h5>
+</div> -->
+
+<div class="newPreload" id="newPreload" style="position: fixed; display: none; top: 35%;right: 45%;z-index: 5500;text-align: center;padding: 10px;overflow-x: hidden; overflow-y: hidden;">
+
+	<i class="fa fa-spinner fa-spin fa-3x"></i>
+	<br />
+	<h4>Please wait...</h4>
+</div>
+<style>
+	.modal-backdrop-n {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #ffffff;
+}
+.modal-backdrop-n.in {
+  filter: alpha(opacity=50);
+  opacity: .5;
+}
+</style>
+<div class="modal-backdrop-n in" id="loadoverRay" style="display: none;">
+
+</div>
+
+<div class="modal fade" id="alertModal" tabindex="-2" role="dialog" aria-labelledby="myModalLabel2">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h4 class="modal-title">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p id="messagevalue"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary alertsave" data-function="">OK</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+ <div class="modal modal-danger" id="noticeModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p id="messagenotice"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-right noticesave" data-dismiss="modal">OK</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<iframe height="0" width="0" id="updateFrm" name="updateFrm" style="display: none;"></iframe>

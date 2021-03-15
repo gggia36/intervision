@@ -1,0 +1,73 @@
+<section class="content-header">
+  <h1>
+    Position
+    <small>Position Management</small>
+  </h1>  
+</section>
+
+        <!-- Main content -->
+<section class="content" >
+	<div class="row">
+		
+       <div class="col-md-12">
+		  <div class="box box-warning">
+			<div class="box-header with-border">
+			<h3 class="box-title">Position</h3>
+			  <div class="pull-right">
+			  <?php if($button_edit){ ?>
+			  	<a href="#/setting/createposition" class="btn btn-flat btn-warning"><i class="fa fa-plus"></i> Create Position</a>
+			  <?php } ?>
+			  </div>
+			  
+			</div>
+			<div class="box-body">
+				<div class="col-sm-10">
+			   <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>No.</th>
+                        <th>Position Name</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <?php $no = 1; foreach($positionList as $list){ ?>
+                      <tr>
+                        <td><?=$no?></td>
+                        <td><?=$list['position_name']?></td>
+                       
+                        <td>
+                        	<?php if($button_edit){ ?>
+                        	<a href="#/setting/editposition/<?=$list['id']?>/" class="btn btn-success btn-flat"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                       
+                        <?php } ?>
+                        	
+                        	<?php if($button_delete){ ?>
+                        	<button class="btn btn-danger btn-flat " data-id="<?=$list['id']?>" onclick="deletePosition(this);"><i class="fa fa-trash"></i> Delete</button>
+                        	<?php } ?>
+                        	
+                        	
+                        </td>
+                      </tr>
+                     <?php $no++; } ?>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>No.</th>
+                        <th>Position Name</th>
+                        <th>Action</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                  </div>
+			</div>
+			
+			</div>
+		</div>
+	</div>
+          
+</section>
+
+<script>
+	var inputused = 'D';
+</script>

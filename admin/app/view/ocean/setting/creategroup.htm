@@ -1,0 +1,312 @@
+<style>
+	.form-group .control-label {
+		text-align: left;
+	}
+	.box-body {padding-left: 10%;}
+</style>
+
+<section class="content-header">
+  <h1>
+   Permission
+    <small>Permission Management</small>
+  </h1>  
+</section>
+
+        <!-- Main content -->
+<section class="content" >
+	<div class="row">
+       <div class="col-md-12">
+		  <div class="box box-warning">
+			<div class="box-header with-border">
+			<?php if(!is_array($groupInfo)){ ?>
+			  <h3 class="box-title">Create Group</h3>
+			 <?php }else{ ?> 
+			 	<h3 class="box-title">Edit Group</h3>
+			 <?php } ?>
+			</div>
+			 <form class="form-horizontal" id="createFrm" name="createFrm">
+			 <?php if(!is_array($groupInfo)){ ?>
+			 <input type="hidden" name="mode" value="creategroup"/>
+			 <?php }else{ ?>
+			 <input type="hidden" name="mode" value="editgroup"/>
+			 <input type="hidden" name="role_id" value="<?=$groupInfo['role_id']?>"/>
+			 <?php } ?>
+			<div class="box-body">
+			   
+
+                    <div class="form-group">
+                      <label for="leave_title" class="col-sm-2 control-label">Group Name</label>
+                      <div class="col-sm-4">
+                        <input type="text" class="form-control" id="role_name" name="role_name" placeholder="Group Name" value="<?=$groupInfo['role_name']?>">
+                      </div>
+                      
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="leave_title" class="col-sm-2 control-label">Notification E-Mail</label>
+                      
+                      <div class="col-sm-4">
+                      <label>
+                        <input type="checkbox" class="minimal"  name="email_notification" value="A" <?php if($groupInfo['email_notification']=='A'){ ?> checked=""<?php } ?> />
+                        &nbsp; Get E-Mail Notification.
+                      </label><br />
+                      <label>
+                        <input type="checkbox" class="minimal"  name="email_account" value="A" <?php if($groupInfo['email_account']=='A'){ ?> checked=""<?php } ?> />
+                        &nbsp; Get Account E-Mail.
+                      </label>
+                      </div>
+                    </div>
+					
+                    
+                    <div class="form-group">
+                      <label for="leave_desc" class="col-sm-2 control-label">Permission</label>
+                      <div class="col-sm-9">
+                        
+	                     <table class="table table-bordered">
+	                     <?php foreach($moduleList as $module){ ?>
+	                     	<tr>
+	                     		<td>
+	                     			<i class="<?=$module['icon']?>"></i> <?=$module['module_name']?>
+	                     		</td>
+	                     		<td></td>
+	                     		<td>
+	                     			<label>
+				                      <!--<input type="radio" name="allow_module[]" class="minimal" value="<?=$module['id']?>" />-->
+				                      <?php
+				                      $key = -1;
+				                      if(is_array($groupInfo)){
+					                      foreach($groupInfo['module'] as $key_c=>$vals){
+					                      	if($module['id']==$vals['module_id']){
+					                      		$key = $key_c;
+					                      	}
+					                      }
+				                      }
+				                      
+				                      ?>
+				                      <input type="checkbox" class="minimal"  name="allow_module[]" value="<?=$module['id']?>"
+				                      <?php if($key>=0){ ?> 
+				                      <?php if($groupInfo['module'][$key]['permission']=='A'){ ?>
+				                      checked=""
+				                      <?php } ?>
+				                      <?php } ?>
+				                      />
+				                      Allow
+				                    </label>
+				                    &nbsp;&nbsp;
+				                    <!--<label>
+				                      <input type="radio" name="denied_module[]" class="minimal" value="<?=$module['id']?>"/>
+				                      Denied 
+				                    </label>-->
+				                    
+	                     		</td>
+	                     		<td>
+	                     		<?php if($module['module_type']=='S'){ ?>
+	                     			<label>
+	                     			 <?php
+				                      $key = -1;
+				                      if(is_array($groupInfo)){
+					                      foreach($groupInfo['module'] as $key_c=>$vals){
+					                      	if($module['id']==$vals['module_id']){
+					                      		$key = $key_c;
+					                      	}
+					                      }
+				                      }
+				                      
+				                      ?>
+				                  		<input type="checkbox" class="minimal"  name="view_module[]" value="<?=$module['id']?>"
+				                  		<?php if($key>=0){ ?> 
+					                      <?php if($groupInfo['module'][$key]['per_view']=='A'){ ?>
+					                      checked=""
+					                      <?php } ?>
+					                      <?php } ?>
+				                  		/>
+				                  		view
+				                     </label>
+				                     &nbsp;&nbsp;
+				                     <label>
+				                     <?php
+				                      $key = -1;
+				                      if(is_array($groupInfo)){
+					                      foreach($groupInfo['module'] as $key_c=>$vals){
+					                      	if($module['id']==$vals['module_id']){
+					                      		$key = $key_c;
+					                      	}
+					                      }
+				                      }
+				                      
+				                      ?>
+			                      		<input type="checkbox" class="minimal"  name="edit_module[]" value="<?=$module['id']?>"
+			                      		<?php if($key>=0){ ?> 
+					                      <?php if($groupInfo['module'][$key]['per_edit']=='A'){ ?>
+					                      checked=""
+					                      <?php } ?>
+					                      <?php } ?>
+			                      		/>
+			                      		edit
+				                     </label>
+				                     &nbsp;&nbsp;
+				                     <label>
+				                     <?php
+				                      $key = -1;
+				                      if(is_array($groupInfo)){
+					                      foreach($groupInfo['module'] as $key_c=>$vals){
+					                      	if($module['id']==$vals['module_id']){
+					                      		$key = $key_c;
+					                      	}
+					                      }
+				                      }
+				                      
+				                      ?>
+			                      		<input type="checkbox" class="minimal"  name="delete_module[]" value="<?=$module['id']?>"
+			                      		<?php if($key>=0){ ?> 
+					                      <?php if($groupInfo['module'][$key]['per_delete']=='A'){ ?>
+					                      checked=""
+					                      <?php } ?>
+					                      <?php } ?>
+			                      		/>
+			                      		delete
+				                     </label>
+				                 <?php } ?>
+	                     		</td>
+	                     	</tr>
+	                     	<?php foreach($module['item'] as $item){ ?>
+	                     	<tr>
+	                     		<td>
+	                     			 &nbsp;
+	                     		</td>
+	                     		<td>
+	                     			- <?=$item['item_name']?>
+	                     		</td>
+	                     		<td>
+	                     			<label>
+				                      <!--<input type="radio" name="allow_item[]" value="<?=$item['id']?>" class="minimal" />-->
+				                      <?php
+				                      $key = -1;
+				                      if(is_array($groupInfo)){
+					                      foreach($groupInfo['item'] as $key_c=>$vals){
+					                      	if($item['id']==$vals['item_id']){
+					                      		$key = $key_c;
+					                      	}
+					                      }
+				                      }
+				                      
+				                      ?>
+				                      <input type="checkbox" class="minimal" name="allow_item[]" value="<?=$item['id']?>" 
+				                      <?php if($key>=0){ ?> 
+					                      <?php if($groupInfo['item'][$key]['permission']=='A'){ ?>
+					                      checked=""
+					                      <?php } ?>
+					                      <?php } ?>
+				                      />
+				                      Allow
+				                    </label>
+				                    &nbsp;&nbsp;
+				                    <!--<label>
+				                      <input type="radio" name="denied_item[]" value="<?=$item['id']?>" class="minimal" />
+				                      Denied 
+				                    </label>-->
+				                    
+	                     		</td>
+	                     		<td>
+	                     		
+	                     			<label>
+	                     				<?php
+					                      $key = -1;
+					                      if(is_array($groupInfo)){
+						                      foreach($groupInfo['item'] as $key_c=>$vals){
+						                      	if($item['id']==$vals['item_id']){
+						                      		$key = $key_c;
+						                      	}
+						                      }
+					                      }
+					                      
+					                      ?>
+				                  		<input type="checkbox" class="minimal" name="view_item[]" value="<?=$item['id']?>" 
+				                  		<?php if($key>=0){ ?> 
+					                      <?php if($groupInfo['item'][$key]['per_view']=='A'){ ?>
+					                      checked=""
+					                      <?php } ?>
+					                      <?php } ?>
+				                  		/>
+				                  		view
+				                     </label>
+				                     &nbsp;&nbsp;
+				                     <label>
+				                     	<?php
+					                      $key = -1;
+					                      if(is_array($groupInfo)){
+						                      foreach($groupInfo['item'] as $key_c=>$vals){
+						                      	if($item['id']==$vals['item_id']){
+						                      		$key = $key_c;
+						                      	}
+						                      }
+					                      }
+					                      
+					                      ?>
+			                      		<input type="checkbox" class="minimal" name="edit_item[]" value="<?=$item['id']?>" 
+			                      		<?php if($key>=0){ ?> 
+					                      <?php if($groupInfo['item'][$key]['per_edit']=='A'){ ?>
+					                      checked=""
+					                      <?php } ?>
+					                      <?php } ?>
+			                      		/>
+			                      		edit
+				                     </label>
+				                     &nbsp;&nbsp;
+				                     <label>
+				                     	<?php
+					                      $key = -1;
+					                      if(is_array($groupInfo)){
+						                      foreach($groupInfo['item'] as $key_c=>$vals){
+						                      	if($item['id']==$vals['item_id']){
+						                      		$key = $key_c;
+						                      	}
+						                      }
+					                      }
+					                      
+					                      ?>
+			                      		<input type="checkbox" class="minimal"  name="delete_item[]" value="<?=$item['id']?>"
+			                      		<?php if($key>=0){ ?> 
+					                      <?php if($groupInfo['item'][$key]['per_delete']=='A'){ ?>
+					                      checked=""
+					                      <?php } ?>
+					                      <?php } ?>
+			                      		/>
+			                      		delete
+				                     </label>
+				                 
+	                     		</td>
+	                     	</tr>
+	                     	<?php } ?>
+	                    	<?php } ?>
+	                     </table>
+	                     
+	                     	
+	                    
+                      </div>
+                    </div>
+                  
+                    
+                  
+                  
+                
+			</div>
+			<div class="box-footer" style="margin-left: 10%">
+			<a href="#/setting/permission/" class="btn btn-success pull-right">Back To List</a>
+			
+                    <button type="reset" class="btn btn-default">Reset</button>
+                    <button type="button" class="btn btn-primary"  onclick="saveGroup();">Save</button>
+            
+            </div><!-- /.box-footer -->
+            </form>
+			</div>
+		</div>
+	</div>
+          
+</section>
+
+<script>
+	 
+</script>
+
+

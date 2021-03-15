@@ -1,0 +1,72 @@
+<style>
+	.form-group .control-label {
+		text-align: left;
+	}
+	.box-body {padding-left: 10%;}
+</style>
+
+<section class="content-header">
+  <h1>
+   Position
+    <small>Position Management</small>
+  </h1>  
+</section>
+
+        <!-- Main content -->
+<section class="content" >
+	<div class="row">
+       <div class="col-md-12">
+		  <div class="box box-warning">
+			<div class="box-header with-border">
+			<?php if(!is_array($positionInfomation)){ ?>
+			  <h3 class="box-title">Create Position</h3>
+			 <?php }else{ ?> 
+			 	<h3 class="box-title">Edit Position</h3>
+			 <?php } ?>
+			</div>
+			 <form class="form-horizontal" id="createFrm" name="createFrm">
+			 <?php if(!is_array($positionInfomation)){ ?>
+			 <input type="hidden" name="mode" value="createposition"/>
+			 <?php }else{ ?>
+			 <input type="hidden" name="mode" value="editposition"/>
+			 <input type="hidden" name="position_id" value="<?=$positionInfomation['id']?>"/>
+			 <?php } ?>
+			<div class="box-body">
+			   
+
+                    <div class="form-group">
+                      <label for="leave_title" class="col-sm-2 control-label">Position Name</label>
+                      <div class="col-sm-4">
+                        <input type="text" class="form-control" id="position_name" name="position_name" placeholder="Group Name" value="<?=$positionInfomation['position_name']?>">
+                      </div>
+                      
+                    </div>
+                    
+                    
+					
+                    
+                  
+                    
+                  
+                  
+                
+			</div>
+			<div class="box-footer" style="margin-left: 10%">
+			<a href="#/setting/position/" class="btn btn-success pull-right">Back To List</a>
+			
+                    <button type="reset" class="btn btn-default">Reset</button>
+                    <button type="button" class="btn btn-primary"  onclick="savePosition();">Save</button>
+            
+            </div><!-- /.box-footer -->
+            </form>
+			</div>
+		</div>
+	</div>
+          
+</section>
+
+<script>
+	 
+</script>
+
+

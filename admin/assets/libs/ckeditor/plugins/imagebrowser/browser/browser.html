@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<base>
+		<link rel="stylesheet" href="browser.css">
+	</head>
+
+	<body>
+		<script type="text/x-template-html" id="js-template-image">
+			<a href="javascript://" class="thumbnail js-image-link" data-url="%imageUrl%"><img src="%thumbUrl%"></a>
+		</script>
+		<div style="margin-left: 20px;">
+			<form enctype="multipart/form-data" method="POST" id="frmUpload" action="upload.php" target="upload_target">
+				<input type="file" name="upload" id="upload">
+				<button id="set-btn" style="" type="button" onclick="uploadx();">upload</button>
+				<img id="set-load" style="display: none;"  src="159.GIF"/>
+			</form>
+		</div>
+		<iframe id="upload_target" name="upload_target" src="#" style="width:0;height:0;border:0px solid #fff;">
+		    
+		</iframe>
+		<ul class="folder-switcher" id="js-folder-switcher"></ul>
+
+		<div class="images-container" id="js-images-container">Loading..</div>
+
+		<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="browser.js"></script>
+		<script type="text/javascript" src="ajax.js"></script>
+
+		<script type="text/javascript">
+			CkEditorImageBrowser.init();
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,178 @@
+       <div class="wrapper fade-in">
+            <section>
+                <div class="container">
+                    <div class="row text-center g-py-100--xl g-py-30--lg">
+                        <h1 class="g-font-weight-700">News & Articles</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-12 col-sm-12 col-md-12 head_blog">
+                                <ul class="menu_blog">
+                                    <li>
+                                        <a href="<?=$BASEURL?>/news" class="active g-font-size-25--md ">
+                                            Highlights
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?=$BASEURL?>/blog_all" class="g-font-size-25--md ">
+                                            All
+                                        </a>
+                                    </li>
+                                     <?php $k=1; if(!empty($categoryAll)):?>
+                                        <?php foreach($categoryAll as $cate):?>
+                                            <li>
+                                                <a class="g-font-size-25--md " href="<?=$BASEURL?>/blog/category/<?=$cate['category_id']?>/<?=GF::formatURL($cate['category_name'])?>">
+                                                    <?=$cate['category_name']?>
+                                                </a>
+                                            </li>
+                                        <?php endforeach;?> 
+                                    <?php endif;?>
+                                </ul>
+
+                                <div class="search_blog">
+                                    <form id="FrmSearch_blog" onsubmit="return false;">
+                                        <div class="col-xs-12 col-sm-12 col-md-4"></div>
+                                        <div class="col-xs-12 col-sm-12 col-md-8">
+                                            <div style="display: inline-block;">
+                                                <div class="input-group">
+                                                    <input id="search_blog" type="text" class="form-control" name="search_blog" placeholder="Search the blog" />
+                                                    <span id="search_btn" class="input-group-addon">
+                                                        <i class="fa fa-search"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php if(!empty($latestAll[0]['content_id'])):?>
+                        <div class="row g-border-4-news g-mt-100--md g-mt-50 ">
+                            <div class="col-md-6 col-sm-12 margin-bottom-top-partner">
+                            <?php if(!empty($latestAll[0]['category_info'])):?>
+                                <?php foreach($latestAll[0]['category_info'] as $cate):?>
+                                 <a href="<?=$BASEURL?>/blog/category/<?=$cate['category_id']?>/<?=GF::formatURL($cate['category_name'])?>"  class="hidden-xs hidden-sm letter-spacing-2 g-color-black g-font-bold">
+                                    <?=$cate['category_name']?>
+                                </a>
+                                <?php endforeach;?>
+                            <?php endif;?>
+                                <a href="<?=$BASEURL?>/blog/<?=$latestAll[0]['content_id']?>/<?=GF::formatURL($latestAll[0]['content_url'])?>">
+                                    <h1 class="g-color-blue g-font-weight-700 g-font-size-76--lg g-font-size-36">
+                                        <?=$latestAll[0]['content_name']?>
+                                    </h1>
+                                </a>
+                                <p class="g-font-size-25--md g-font-size-18 g-color-gray-light-v1">
+                                  <?=$latestAll[0]['content_short']?>
+                                </p>
+                                <br/>
+                                <p class="g-color-gray-light-v1">
+                                    By <?=$latestAll[0]['writer_info']['writer_name']?> • <?=$latestAll[0]['content_date']?>
+                                </p>
+                            </div>
+                            <div class="col-md-6 col-sm-12 g-px-0--md g-px-20">
+                                <a href="<?=$BASEURL?>/blog/<?=$latestAll[0]['content_id']?>/<?=GF::formatURL($latestAll[0]['content_url'])?>">
+                                    <img src="<?=$BASEURL?>/Images/article/<?=$latestAll[0]['content_img']?>" class="img-responsive" />
+                                </a>
+                            </div>
+                        </div>
+                    <?php endif;?>
+                </div>
+            </section>
+
+            <section>
+                <div class="container">
+                    <div class="row lastest_list g-mt-100--md g-my-50">
+                    <?php if(!empty($latestAll)):?>
+                        <?php for($i=1;$i<=count($latestAll) - 1;$i++): 
+                            $val_last = $latestAll[$i];
+                        ?>
+                        <div class="col-xs-12 col-sm-4 col-md-4 lastest_list_content lastest_highligh_1">
+                            <div class="lastest_detail_list blog-img flex-column">
+                                <a href="<?=$BASEURL?>/blog/<?=$val_last['content_id']?>/<?=GF::formatURL($val_last['content_url'])?>">
+                                    <div class="blog-img-set">
+                                       <img src="<?=$BASEURL?>/Images/article/<?=$val_last['content_img']?>" class="img-responsive" />
+                                    </div>
+                                </a>
+                                <div class="caption_detail_lastest">
+                                    <?php if(!empty($val_last['category_info'])):?>
+                                        <?php foreach($val_last['category_info'] as $cate):?>
+                                            <a href="<?=$BASEURL?>/blog/category/<?=$cate['category_id']?>/<?=GF::formatURL($cate['category_name'])?>"  class="hidden-xs hidden-sm letter-spacing-2 g-color-black g-font-bold">
+                                                <?=$cate['category_name']?>
+                                            </a>
+                                             <a href="<?=$BASEURL?>/blog/category/<?=$cate['category_id']?>/<?=GF::formatURL($cate['category_name'])?>"  class="text-block visible-xs visible-sm letter-spacing-2 g-pt-10 g-font-bold">
+                                                <?=$cate['category_name']?>
+                                            </a>
+                                        <?php endforeach;?>
+                                    <?php endif;?>
+                                    <a href="<?=$BASEURL?>/blog/<?=$val_last['content_id']?>/<?=GF::formatURL($val_last['content_url'])?>">
+                                        <h4 class="g-font-bold fix-textnewdetail">
+                                            <?=$val_last['content_name']?>
+                                        </h4>
+                                    </a>
+                                    <p class="g-color-gray-light-v1">
+                                        By <?=$val_last['writer_info']['writer_name']?> • <?=$val_last['content_date']?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endfor;?>
+                    <?php endif;?>  
+
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="">
+                <?php if(!empty($categoryAll)): $j=0;$col = 2; ?>
+                    <?php foreach($categoryAll as $value):
+                        if(($j%$col)==0){
+                            $class_set = 'bg-light-gray';
+                        }else{
+                            $class_set = '';
+                        }
+                    ?>
+                    <div class="row blog_guide <?=$class_set?>">
+                        <div class="container">
+                            <div class="row g-my-20">
+                                <div class="col-md-6  col-sm-6 col-xs-6 g-px-40 g-px-0--md g-px-20--lg">
+                                    <h3 class=" letter-spacing-2 g-font-bold g-px-0--md g-px-20" >
+                                        <?=$value['category_name']?>
+                                    </h3>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <a href="<?=$BASEURL?>/blog/category/<?=$value['category_id']?>/<?=GF::formatURL($value['category_name'])?>" class="view_all g-px-0--md g-px-20"> View all</a>
+                                </div>
+                            </div>
+
+                            <?php if(!empty($value['content_list'])): $count_content = count($value['content_list']);?>
+                                <div class="row lastest_list">
+                                    <?php foreach($value['content_list'] as $vals):?>
+                                        <div class="col-xs-12 col-sm-6 col-md-3 lastest_list_content_all">
+                                            <div class="lastest_detail_list blog-img">
+                                                <a href="<?=$BASEURL?>/blog/<?=$vals['content_id']?>/<?=GF::formatURL($vals['content_url'])?>">
+                                                    <div class="blog-img-set">
+                                                         <img src="<?=$BASEURL?>/Images/article/<?=$vals['content_img']?>" class="img-responsive" />
+                                                    </div>
+                                                    <div class="caption_detail_lastest">
+                                                        <h5 class="fix-textnewdetail ">
+                                                          <?=$vals['content_name']?>
+                                                        </h5>
+                                                        <p class="g-color-gray-light-v1">
+                                                            By <?=$vals['writer_info']['writer_name']?> • <?=$vals['content_date']?>
+                                                        </p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    <?php endforeach;?> 
+                                </div>
+                            <?php endif;?>
+                        </div>
+                    </div>
+                    <?php $j++; endforeach;?>
+                <?php endif;?>
+            </section>
+        </div>
+

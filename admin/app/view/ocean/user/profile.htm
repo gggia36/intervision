@@ -1,0 +1,162 @@
+<style>
+	.form-group .control-label {
+		text-align: left;
+	}
+	.box-body {padding-left: 10%;}
+</style>
+
+<section class="content-header">
+  <h1>
+    Profile
+    <small>Profile Management</small>
+  </h1>  
+</section>
+
+        <!-- Main content -->
+<section class="content" >
+	<div class="row">
+       <div class="col-md-12">
+		  <div class="box box-warning">
+			<div class="box-header with-border">
+			
+			  <h3 class="box-title">Edit My Profile</h3>
+			 
+			</div>
+			 <form class="form-horizontal" id="createFrm" name="createFrm">
+			 
+			 <input type="hidden" name="mode" value="profile"/>
+			 <input type="hidden" name="user_id" value="<?=$memberinfomation['id']?>"/>
+			 <input type="hidden" name="old_thumb" value="<?=$memberinfomation['user_thumb']?>"/>
+			
+			<div class="box-body">
+			   
+                  
+                    <div class="form-group">
+                      <label for="user_name" class="col-sm-2 control-label">User ID</label>
+                      <div class="col-sm-5">
+                        <h2>CMS<?=str_pad($memberinfomation['id'],4,'0',STR_PAD_LEFT)?></h2>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Image</label>
+                      <?php if(!empty($memberinfomation['user_thumb'])){ ?>
+                      <div class="col-sm-2">
+                      	<img class="img-responsive" src="<?=$BASEURL?>/uploads/userthumbnail/<?=$memberinfomation['user_thumb']?>"/>
+                      </div>
+                      <?php } ?>
+                      <div class="col-sm-5">
+                        <input type="file" class="" id="user_image" onchange="checkFileType(this);" name="user_image" placeholder="Image">
+                        <p class="help-block">Allow For .JPG ,.PNG or .GIF only.<br />Max file size 5MB.</p>
+                      </div>
+                      
+                    </div>
+                    <div class="form-group">
+                      <label for="user_name" class="col-sm-2 control-label">First Name - Last Name</label>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control" id="user_name" name="user_name" placeholder="First Name - Last Name" value="<?=$memberinfomation['user_name']?>">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="user_nickname" class="col-sm-2 control-label">Nick Name</label>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control" id="user_nickname" name="user_nickname" placeholder="Nick Name" value="<?=$memberinfomation['user_nickname']?>">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="user_email" class="col-sm-2 control-label">Email</label>
+                      <div class="col-sm-5">
+                        <input type="email" class="form-control" id="user_email" name="user_email" placeholder="Email" value="<?=$memberinfomation['user_email']?>">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="user_phone_number" class="col-sm-2 control-label">Phone Number</label>
+                      <div class="col-sm-5">
+                        <input type="text" class="form-control" id="user_phone_number" name="user_phone_number" placeholder="Phone Number" value="<?=$memberinfomation['user_phone_number']?>">
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="birthdate" class="col-sm-2 control-label">Birth Date</label>
+                      <div class="col-sm-5">
+                        <div class="input-group">
+	                      <div class="input-group-addon">
+	                        <i class="fa fa-calendar"></i>
+	                      </div>
+	                      <?php
+	                      	$bdate = date('d-m-Y', strtotime($memberinfomation['user_birthdate']));
+	                      	if($memberinfomation['user_birthdate']==''){$bdate='';}
+	                       ?>
+	                      <input type="text" class="form-control my_date" id="birthdate" name="birthdate"  value="<?=$bdate?>" />
+	                    </div><!-- /.input group -->
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="startdate" class="col-sm-2 control-label">Start Date</label>
+                      <div class="col-sm-5">
+                        <div class="input-group">
+	                      <div class="input-group-addon">
+	                        <i class="fa fa-calendar"></i>
+	                      </div>
+	                      <?php
+	                      	$sdate = date('d-m-Y', strtotime($memberinfomation['user_start_date']));
+	                      	if($memberinfomation['user_start_date']==''){$sdate='';}
+	                       ?>
+	                      <input type="text" class="form-control my_date" id="startdate" name="startdate"  value="<?=$sdate?>" />
+	                    </div><!-- /.input group -->
+                      </div>
+                    </div>
+                   
+               
+                    
+                    <div class="form-group">
+                      <label for="user_username" class="col-sm-2 control-label">Username</label>
+                      <div class="col-sm-5">
+                        <input type="hidden" class="form-control" id="user_username" name="user_username" placeholder="Username" value="<?=$memberinfomation['user_username']?>">
+                        <?=$memberinfomation['user_username']?>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="user_password" class="col-sm-2 control-label">Password</label>
+                      <div class="col-sm-5">
+                        <input type="password" class="form-control" id="user_password" name="user_password" placeholder="Password">
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="user_password" class="col-sm-2 control-label">Skin</label>
+                      <div class="col-sm-6">
+                        <ul class="list-unstyled clearfix">
+                    	<li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-blue" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div><span style="display:block; width: 20%; float: left; height: 7px; background: #367fa9;"></span><span class="bg-light-blue" style="display:block; width: 80%; float: left; height: 7px;"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div></a><p class="text-center no-margin"><input type="radio" class="form-radio" name="user_theme" <?php if($memberinfomation['user_theme']=='skin-blue'){ ?>checked=""<?php } ?> value="skin-blue"/> Blue</p>
+                    	</li>
+                    	<li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-black" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div style="box-shadow: 0 0 2px rgba(0,0,0,0.1)" class="clearfix"><span style="display:block; width: 20%; float: left; height: 7px; background: #fefefe;"></span><span style="display:block; width: 80%; float: left; height: 7px; background: #fefefe;"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #222;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div></a><p class="text-center no-margin"><input type="radio" class="form-radio" name="user_theme" <?php if($memberinfomation['user_theme']=='skin-black'){ ?>checked=""<?php } ?> value="skin-black"/> Black</p></li>
+                    	<li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-purple" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-purple-active"></span><span class="bg-purple" style="display:block; width: 80%; float: left; height: 7px;"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div></a><p class="text-center no-margin"><input type="radio" class="form-radio" name="user_theme" <?php if($memberinfomation['user_theme']=='skin-purple'){ ?>checked=""<?php } ?> value="skin-purple"/> Purple</p></li>
+                    	<li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-green" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-green-active"></span><span class="bg-green" style="display:block; width: 80%; float: left; height: 7px;"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div></a><p class="text-center no-margin"><input type="radio" class="form-radio" name="user_theme" <?php if($memberinfomation['user_theme']=='skin-green'){ ?>checked=""<?php } ?> value="skin-green"/> Green</p></li>
+                    	<li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-red" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-red-active"></span><span class="bg-red" style="display:block; width: 80%; float: left; height: 7px;"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div></a><p class="text-center no-margin"><input type="radio" class="form-radio" name="user_theme" <?php if($memberinfomation['user_theme']=='skin-red'){ ?>checked=""<?php } ?> value="skin-red"/> Red</p></li>
+                    	<li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-yellow" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-yellow-active"></span><span class="bg-yellow" style="display:block; width: 80%; float: left; height: 7px;"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div></a><p class="text-center no-margin"><input type="radio" class="form-radio" name="user_theme" <?php if($memberinfomation['user_theme']=='skin-yellow'){ ?>checked=""<?php } ?> value="skin-yellow"/> Yellow</p></li>
+                    	<li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-blue-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div><span style="display:block; width: 20%; float: left; height: 7px; background: #367fa9;"></span><span class="bg-light-blue" style="display:block; width: 80%; float: left; height: 7px;"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div></a><p class="text-center no-margin" style="font-size: 12px"><input type="radio" class="form-radio" name="user_theme" <?php if($memberinfomation['user_theme']=='skin-blue-light'){ ?>checked=""<?php } ?> value="skin-blue-light"/> Blue Light</p></li>
+                    	<li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-black-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div style="box-shadow: 0 0 2px rgba(0,0,0,0.1)" class="clearfix"><span style="display:block; width: 20%; float: left; height: 7px; background: #fefefe;"></span><span style="display:block; width: 80%; float: left; height: 7px; background: #fefefe;"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div></a><p class="text-center no-margin" style="font-size: 12px"><input type="radio" class="form-radio" name="user_theme" <?php if($memberinfomation['user_theme']=='skin-black-light'){ ?>checked=""<?php } ?> value="skin-black-light"/> Black Light</p></li>
+                    	<li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-purple-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-purple-active"></span><span class="bg-purple" style="display:block; width: 80%; float: left; height: 7px;"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div></a><p class="text-center no-margin" style="font-size: 12px"><input type="radio" class="form-radio" name="user_theme" <?php if($memberinfomation['user_theme']=='skin-purple-light'){ ?>checked=""<?php } ?> value="skin-purple-light"/> Purple Light</p></li>
+                    	<li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-green-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-green-active"></span><span class="bg-green" style="display:block; width: 80%; float: left; height: 7px;"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div></a><p class="text-center no-margin" style="font-size: 12px"><input type="radio" class="form-radio" name="user_theme" <?php if($memberinfomation['user_theme']=='skin-green-light'){ ?>checked=""<?php } ?> value="skin-green-light"/> Green Light</p></li>
+                    	<li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-red-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-red-active"></span><span class="bg-red" style="display:block; width: 80%; float: left; height: 7px;"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div></a><p class="text-center no-margin" style="font-size: 12px"><input type="radio" class="form-radio" name="user_theme" <?php if($memberinfomation['user_theme']=='skin-red-light'){ ?>checked=""<?php } ?> value="skin-red-light"/> Red Light</p></li>
+                    	<li style="float:left; width: 33.33333%; padding: 5px;"><a href="javascript:void(0);" data-skin="skin-yellow-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover"><div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-yellow-active"></span><span class="bg-yellow" style="display:block; width: 80%; float: left; height: 7px;"></span></div><div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div></a><p class="text-center no-margin" style="font-size: 12px;"><input type="radio" class="form-radio" name="user_theme" <?php if($memberinfomation['user_theme']=='skin-yellow-light'){ ?>checked=""<?php } ?> value="skin-yellow-light"/> Yellow Light</p></li>
+                    </ul>
+                      </div>
+                    </div>
+                    
+                  
+                  
+                
+			</div>
+			<div class="box-footer" style="margin-left: 10%">
+					<a href="#/dashboard/" class="btn btn-success pull-right">Back To Dashboard</a>
+                    
+                    <button type="button" class="btn btn-primary" onclick="saveUser();">Save</button>
+            </div><!-- /.box-footer -->
+            </form>
+			</div>
+		</div>
+	</div>
+          
+</section>
+

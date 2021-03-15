@@ -1,0 +1,108 @@
+<style>
+	.form-group .control-label {
+		text-align: left;
+	}
+	.box-body {padding-left: 10%;}
+</style>
+
+<section class="content-header">
+  <h1>
+    User
+    <small>User Management</small>
+  </h1>  
+</section>
+        <!-- Main content -->
+<section class="content" >
+	<div class="row">
+       <div class="col-md-12">
+		  <div class="box box-warning">
+			<div class="box-header with-border">
+			<?php if(!is_array($memberinfomation)){ ?>
+			  <h3 class="box-title">Create User</h3>
+			 <?php }else{ ?> 
+			 	<h3 class="box-title">Edit User</h3>
+			 <?php } ?>
+			</div>
+			 <form class="form-horizontal" id="createFrm" name="createFrm" >
+			 <?php if(!is_array($memberinfomation)){ ?>
+			 <input type="hidden" name="mode" id="mode" value="create"/>
+			 <?php }else{ ?>
+			 <input type="hidden" name="mode" id="mode" value="edit"/>
+			 <input type="hidden" name="user_id" value="<?=$memberinfomation['id']?>"/>
+			 <input type="hidden" name="old_thumb" value="<?=$memberinfomation['user_thumb']?>"/>
+			 <?php } ?>
+			<div class="box-body">
+			   
+                  	<?php if($memberinfomation['id']!=''){ ?>
+                    <div class="form-group">
+                      <label for="user_name" class="col-sm-2 control-label">User ID</label>
+                      <div class="col-sm-5">
+                      
+                        <h2>CMS<?=str_pad($memberinfomation['id'],4,'0',STR_PAD_LEFT)?></h2>
+                      
+                      </div>
+                    </div>
+                    <?php } ?>
+                   <div class="form-group" id='name'>
+						<label  class="col-sm-2 control-label" >ชื่อ-นามสกุล <span style="color:red;"> *</span></label>
+						 <div class="col-sm-5">
+							<input type="text" class="form-control" id="user_name" name="user_name" placeholder="ชื่อ-นามสกุล" value="<?=$memberinfomation['user_name']?>">
+						</div>
+					</div>
+					<div class="form-group" id='name'>
+						<label  class="col-sm-2 control-label" >เบอโทรศัพท์ <span style="color:red;"> *</span></label>
+						 <div class="col-sm-5">
+							<input type="text" class="form-control" id="user_phone_number" name="user_phone_number" onkeypress="numberonly(event);" placeholder="เบอโทรศัพท์" value="<?=$memberinfomation['user_phone_number']?>">
+						</div>
+					</div>
+					<div class="form-group" id='name'>
+						<label  class="col-sm-2 control-label" >วันเกิด <span style="color:red;"> *</span></label>
+						 <div class="col-sm-5">
+							<input type="text" class="form-control my_date" id="birthdate" name="birthdate" placeholder="วันเกิด"  value="<?=date('d-m-Y',strtotime($memberinfomation['user_birthdate']))?>">
+						</div>
+					</div>
+					<div class="form-group" id='name'>
+						<label  class="col-sm-2 control-label" >อีเมล์ <span style="color:red;"> *</span></label>
+						 <div class="col-sm-5">
+							<input type="text" <?php if($memberinfomation['id']!=''){ ?> readonly="readonly" <?php } ?> class="form-control" id="user_email" name="user_email" placeholder="อีเมล์" value="<?=$memberinfomation['user_email']?>">
+						</div>
+					</div>
+					<?php if($memberinfomation['id']!=''){ ?>
+					<div class="form-group" id='link-password'>
+						<label  class="col-sm-2 control-label" ></label>
+						 <div class="col-sm-5">
+							<a href="javascript:;" onclick="myFunction();">Re-Password</a>
+						</div>
+					</div>
+					<div class="form-group" id='password_user' style="display: none;">
+						<label  class="col-sm-2 control-label" >รหัสผ่าน <span style="color:red;"> *</span></label>
+						 <div class="col-sm-5">
+							<input type="text" class="form-control" id="user_password" name="user_password" placeholder="รหัสผ่าน">
+						</div>
+					</div>
+					<?php }else{ ?>
+					<div class="form-group" id='name'>
+						<label  class="col-sm-2 control-label" >รหัสผ่าน <span style="color:red;"> *</span></label>
+						 <div class="col-sm-5">
+							<input type="text" class="form-control" id="user_password" name="user_password" placeholder="รหัสผ่าน">
+						</div>
+					</div>
+					<?php }?>
+             </div>
+			<div class="box-footer" style="margin-left: 10%">
+					<a href="#/user/userlist/" class="btn btn-success pull-right">Back To List</a>
+                    <button type="reset" class="btn btn-default" id="canCel">Reset</button>
+                    <button type="button" class="btn btn-primary" id="save_emp_btn"   onclick="saveUser();">Save</button>
+            </div><!-- /.box-footer -->
+            </form>
+			</div>
+		</div>
+	</div>
+          
+</section>
+
+<script>
+function myFunction() {
+    $('#password_user').slideDown('slow');
+}
+</script>

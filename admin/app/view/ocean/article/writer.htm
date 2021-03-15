@@ -1,0 +1,125 @@
+<section class="content-header">
+  <h1>
+    ผู้เขียน
+    <small>ระบบจัดการผู้เขียน</small>
+  </h1>
+</section>
+
+        <!-- Main content -->
+<section class="content" >
+	<div class="row">
+
+       <div class="col-md-12">
+		  <div class="box box-warning">
+			<div class="box-header with-border">
+			<h3 class="box-title">รายการผู้เขียน</h3>
+			  <div class="pull-right">
+			
+			  	<a href="#/news/createwriter" class="btn btn-flat btn-warning"><i class="fa fa-plus"></i> เพิ่มผู้เขียน</a>
+
+			  </div>
+
+			</div>
+			<div class="box-body table-responsive">
+				<div style="margin-bottom: 20px;">
+                    <form class="form-horizontal" id="clearFrm" name="clearFrm">
+						<input type="hidden" name="mode" value="clearwriter">
+					</form>
+					<form class="form-horizontal" id="searchFrm" name="searchFrm">
+					<input type="hidden" name="mode" value="searchwriter"/>
+                    <div class="col-sm-5 ">
+                    	<div class="form-group">
+	                      <label for="leave_title" class="col-sm-3 control-label">ชื่อผู้เขียน </label>
+	                      <div class="col-sm-9">
+		                      <input type="text" class="form-control " name="writer_name" placeholder="<?=$lang->content_writer_name?>" value="<?=$SESSION['article_writer']['writer_name']?>">
+	                      </div>
+	                    </div>
+                    </div>
+                    <div class="col-sm-5 ">
+                    	<div class="form-group">
+	                      <label for="leave_title" class="col-sm-3 control-label"><?=$lang->_status?></label>
+	                      <div class="col-sm-9">
+	                       <select class="form-control" id="status" name="status">
+	                       			<option value="">All</option>
+		                      		<option value="O" <?php if($SESSION['article_writer']['status']=='O'){ ?>selected=""<?php } ?>><?=$lang->_active?></option>
+		                      		<option value="C" <?php if($SESSION['article_writer']['status']=='C'){ ?>selected=""<?php } ?>><?=$lang->_inactive?></option>
+		                      	</select>
+	                      </div>
+	                    </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-12 text-center">
+                    	<button type="button" class="btn btn-warning " onclick="clearContentwriter();">Reset</button>
+                    	<button type="button" class="btn btn-primary " onclick="searchContentwriter();">Search</button>
+                    </div>
+                    </form>
+                    <div class="clearfix"></div>
+               </div>
+			   <table id="example1" class="table table-bordered table-striped" >
+                    <thead>
+                      <tr>
+                    	<th width="50px">#</th>
+                        <th width="20%">บริษัท</th>
+                        <th width="15%">รูปภาพ</th>
+                        <th><?=$lang->_name?></th>
+                        <th  class="text-center"><?=$lang->_status?></th>
+                        <th  class="text-center"><?=$lang->_update?></th>
+                        <th class="text-center"><?=$lang->_action?></th>
+                      </tr>
+                    </thead>
+                    <?php $i=1; foreach($writerList as $list){ ?>
+                    	<tr>
+                    		<td width="50px;">
+                    			<?=$i?>.
+                    		</td>
+                            <td>
+                                <?php if(!empty($list['company_thumb'])):?>
+                                <img src="<?=$BASEURL_F?>/Images/article/company/<?=$list['company_thumb']?>" style="max-height: 50px;"/>
+                                <?php endif;?>
+                            </td>
+                            <td>
+                                <?php if(!empty($list['writer_thumb'])):?>
+                                <img src="<?=$BASEURL_F?>/Images/article/writer/<?=$list['writer_thumb']?>" style="max-height: 50px;"/>
+                                <?php endif;?>
+                            </td>
+                    		<td>
+                    			<?=$list['writer_name']?>
+                    		</td>
+                    		<td align="center">
+                    			<?php $new_status='C'; ?>
+                    			<?php if($list['status']=='C'){ ?>
+                    			<span class="text-red"><?=$lang->_inactive?></span>
+                    			<?php $new_status='O'; } ?>
+                    			<?php if($list['status']=='O'){ ?>
+                    			<span class="text-green"><?=$lang->_active?></span>
+                    			<?php } ?>
+                    			<br />
+                    			<button class="btn btn-flat btn-default btn-xs" data-id="<?=$list['writer_id']?>" data-status="<?=$new_status?>" onclick="setContentwriterStatus(this);"><i class="fa fa-refresh"></i></button>
+                    		</td>
+                    		<td align="center">
+                    			<?=date("d-m-Y",strtotime($list['update_dtm']))?><br />
+                    			<?=date("H:i:s",strtotime($list['update_dtm']))?>
+                    		</td>
+                    		<td align="center">
+                    			<a href="#/news/editwriter/<?=$list['writer_id']?>" class="btn btn-flat btn-success btn-sm"><i class="fa fa-edit"></i></a>
+                    			<button type="button" onclick="deleteCatgory('<?=$list['writer_id']?>');" class="btn btn-flat btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                    		</td>
+                    	</tr>
+                    <?php $i++; } ?>
+
+                  </table>
+                  <nav class="pull-right" style="margin-right: 3%;">
+					  <ul class="pagination pagination-md">
+					    <?php for($i=1;$i<=$allPage;$i++){ ?>
+					    <li <?php if($currpage==$i){ ?>class="active"<?php } ?>><a href="#/news/writer/?page=<?=$i?>"><?=$i?></a></li>
+					    <?php } ?>
+
+					  </ul>
+					</nav>
+			</div>
+
+			</div>
+		</div>
+	</div>
+
+</section>

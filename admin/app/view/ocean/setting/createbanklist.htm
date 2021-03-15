@@ -1,0 +1,105 @@
+
+<section class="content-header">
+  <h1>
+   	รายการธนาคาร
+    <small>จัดการรายการธนาคาร</small>
+  </h1>  
+</section>
+
+        <!-- Main content -->
+        
+        
+<section class="content" >
+	<div class="row">
+       <div class="col-md-12">
+		  <div class="box box-warning">
+			<div class="box-header with-border">
+			<?php if(!is_array($cateInfo)){ ?>
+			  <h3 class="box-title">สร้างรายการใหม่</h3>
+			 <?php }else{ ?> 
+			 	<h3 class="box-title">แก้ไขรายการธนาคาร</h3>
+			 <?php } ?>
+			</div>
+			 <form class="form-horizontal" id="contFrm" name="contFrm">
+			 <?php if(!is_array($cateInfo)){ ?>
+			 <input type="hidden" name="mode" value="createbanklist"/>
+			 <input type="hidden" name="bank_id" id="bank_id" value="0"/>
+			 <?php }else{ ?>
+			 <input type="hidden" name="mode" value="editbanklist"/>
+			 <input type="hidden" name="bank_id" value="<?=$cateInfo['bank_id']?>"/>
+			 <?php } ?>
+			<div class="box-body">
+			   
+				<div class="col-md-12">
+		          <!-- Custom Tabs -->
+		          <div class="nav-tabs-custom">
+		            <ul class="nav nav-tabs">
+		            <?php $l_c=1; foreach($langlist as $langL){ ?>
+		              <li <?php if($l_c=='1'){ ?> class="active"<?php } ?>><a href="#tab_<?=$langL['lang_prefix']?>" data-toggle="tab" aria-expanded="true"><?=$langL['lang_name']?></a></li>
+		            <?php $l_c++; } ?>
+		            </ul>
+		            <div class="tab-content">
+		            <?php $l_c=1; foreach($langlist as $langL){ ?>
+		              <div class="tab-pane <?php if($l_c=='1'){ ?>active<?php } ?>" id="tab_<?=$langL['lang_prefix']?>">
+		                
+		                <?php if($cateInfo['bank_image_'.$langL['lang_prefix']]!=''){ ?>
+		                <div class="form-group">
+	                      <label for="exp_title" class="col-sm-2 control-label"></label>
+	                      <div class="col-sm-5">
+	                        <img src="<?=$BASEURL_F?>/uploads/banklist/<?=$cateInfo['bank_image_'.$langL['lang_prefix']]?>" class="img-responsive"/>
+	                      </div>
+	                    </div>
+		                <?php } ?>
+		                <div class="form-group">
+	                      <label for="exp_title" class="col-sm-2 control-label">รูปภาพ</label>
+	                      <div class="col-sm-5">
+	                        <input type="file" name="bank_thumb_<?=$langL['lang_prefix']?>" id="bank_thumb_<?=$langL['lang_prefix']?>">
+	                        <input type="hidden" name="old_thumb_<?=$langL['lang_prefix']?>" value="<?=$cateInfo['bank_image_'.$langL['lang_prefix']]?>"/>
+	                        <p class="help-block"><?=$lang->_thumb_desc?></p>
+	                      </div>
+	                    </div>
+		                
+		                <div class="form-group">
+	                      <label for="exp_title" class="col-sm-2 control-label">ชื่อธนาคาร</label>
+	                      <div class="col-sm-5">
+	                        <input type="text" class="form-control" id="bank_name_<?=$langL['lang_prefix']?>" name="bank_name_<?=$langL['lang_prefix']?>" placeholder="<?=$lang->content_category_name?>" value="<?=$cateInfo['bank_name_'.$langL['lang_prefix']]?>">
+	                      </div>
+	                    </div>
+	                    <div class="form-group">
+	                      <label for="exp_title" class="col-sm-2 control-label">หมายเลขบัญชี</label>
+	                      <div class="col-sm-5">
+	                        <input type="text" class="form-control" id="bank_id_<?=$langL['lang_prefix']?>" name="bank_id_<?=$langL['lang_prefix']?>" placeholder="<?=$lang->content_category_name?>" value="<?=$cateInfo['bank_desc_'.$langL['lang_prefix']]?>">
+	                      </div>
+	                    </div>
+	                    
+	                    
+	                    
+		              </div>
+		              <?php $l_c++; } ?>
+		            </div>
+		          </div>
+		        </div>
+                                 
+            </div> 
+             
+            <div class="box-footer" style="">
+
+			<a href="#/setting/banklist/" class="btn btn-success pull-right"><?=$lang->_backtolist?></a>
+
+            <button type="reset" class="btn btn-default"><?=$lang->_reset?></button>
+            <button type="button" class="btn btn-primary" id="" onclick="saveBanklist();"> <i class="fa fa-save"></i> <?=$lang->_save?></button>
+           
+            </div><!-- /.box-footer -->  
+ 			</form>
+			</div>
+			
+           
+			</div>
+		</div>
+
+          
+</section>
+
+
+
+

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        <?=$TITLE?>
+    </title>
+    <meta name="description" content="<?=$DESC?>">
+    <meta name="keywords" content="<?=$KEYWORD?>">
+    <meta name="author" content=""> 
+    <meta name="robots" content="noodp"/> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <link rel="shortcut icon" href="<?=$BASEURL?>/assets/images/favicon.png?v=1" />
+
+    <link href="<?=$BASEURL?>/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?=$BASEURL?>/assets/fontawesome/css/font-awesome.min.css">
+    <link href="<?=$BASEURL?>/assets/css/animate.min.css" rel="stylesheet">
+
+    <!-- owl carousel SLIDER -->
+    <link rel="stylesheet" href="<?=$BASEURL?>/assets/owlcarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="<?=$BASEURL?>/assets/owlcarousel/owl.theme.default.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="<?=$BASEURL?>/assets/css/main.css?<?=time()?>">
+    <link rel="stylesheet" href="<?=$BASEURL?>/assets/css/menu-style.css?<?=time()?>">
+    <link rel="stylesheet" href="<?=$BASEURL?>/assets/css/responsive.css?<?=time()?>">
+    
+
+    <script src="<?=$BASEURL?>/assets/js/wow.min.js"></script>
+
+    <script>
+        new WOW().init();
+    </script>
+
+    <?php if(is_array($component['css'])){ ?>
+    <?php foreach($component['css'] as $component_css){ ?>
+    <?php 
+        $linkComponent = $component_css;
+        if(!preg_match("/http:\/\//", $input_line, $output_array) && !preg_match("/https:\/\//", $input_line, $output_array) ){
+            $linkComponent = $BASEURL.$component_css;
+        }       
+    ?>
+    <link href="<?=$linkComponent?>" rel="stylesheet">
+    <?php } ?>
+    <?php } ?>
+
+    <script>
+        BASEURL = '<?=$BASEURL?>';
+    </script>
+
+    <!-- Facebook Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '158576862263180');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=158576862263180&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MGC26RK');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158291145-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-158291145-1');
+    </script>
+    
+</head>
+
+<body class="front-page transparent-header <?=$_method_?>">
+
+     
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MGC26RK"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    
+    
+    <!-- <div class="preloader">
+        <div class="load_section">
+            <img src="<?=$BASEURL?>/Images/general/<?=$get_setting['setting_upload_logo']?>" class="img-responsive">
+            <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+        </div>
+    </div> -->
+
+    <div id="main-wrapper">
+
+
+        <div id="page-contents" class="page-content ">
+
+        <?php if(!empty($PAGE)){  include($PAGE);  } ?>
+
+        </div>
+
+
+        
+    </div>
+        <!-- All Jquery -->
+        <!-- ============================================================== -->
+        <script src="<?=$BASEURL?>/assets/js/jquery.min.js"></script>
+
+        <script src="<?=$BASEURL?>/assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="<?=$BASEURL?>/assets/owlcarousel/owl.carousel.min.js"></script>
+        <script type='text/javascript' src='<?=$BASEURL?>/assets/js/app.js?ver=<?=time()?>'></script>
+        <!-- Main Menu -->
+        <script type='text/javascript' src='<?=$BASEURL?>/assets/js/main.js?ver=3.5'></script>
+    
+        
+        <?php if(is_array($component['js'])){ ?>
+            <?php foreach($component['js'] as $component_js){ ?>
+            <?php 
+                $linkComponent = $component_js;
+                    if(!preg_match("/http:\/\//", $input_line, $output_array) && !preg_match("/https:\/\//", $input_line, $output_array) ){
+                        $linkComponent = $BASEURL.$component_js;
+                    }       
+            ?>
+
+        <script src="<?=$linkComponent?>?<?=time()?>"></script>
+        <?php } ?>
+        <?php } ?>
+
+
+</body>
+
+</html>

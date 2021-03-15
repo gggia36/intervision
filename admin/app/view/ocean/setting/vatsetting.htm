@@ -1,0 +1,56 @@
+<section class="content-header">
+  <h1>
+   ภาษี
+    <small>จัดการภาษี</small>
+  </h1>  
+</section>
+<section class="content" >
+	<div class="row">
+		
+       <div class="col-md-12">
+		  <div class="box box-warning">
+			<div class="box-header with-border">
+			<h3 class="box-title">ภาษี</h3>
+			  <form class="form-horizontal" id="searchFrm" name="searchFrm">
+					<input type="hidden" name="mode" value="vatInfo"/>
+                    <div class="col-sm-5 ">
+                    	<div class="form-group">
+	                      <label for="leave_title" class="col-sm-5 control-label">ค่าภาษี : </label>
+	                    
+	                      <div class="col-sm-7">  
+	                      <div class="input-group">
+			                <input type="text" class="form-control " name="vat_value" id="vat_value" placeholder="ค่าภาษี" value="<?=$contentInfo['vat_value']?>">
+			                 <span class="input-group-addon" >%</span>
+			                <div class="input-group-btn">
+			               		<button type="button" class="btn btn-warning" onclick="updateVat();">แก้ไข </button>
+			                </div>
+			              </div> 
+	                    </div>
+	                      
+	                    </div>
+                    </div>
+                    <div class="col-sm-5 ">
+                    	<div class="form-group">
+	                      <label for="leave_title" class="col-sm-3 control-label">สถานะ : </label>
+	                    
+	                      <label for="leave_title" class="col-sm-9 control-label" style="text-align: left !important; font-weight: normal;"> 
+	                      	<?php $new_status='C'; ?>
+                    			<?php if($contentInfo['status']=='C'){ ?>
+                    			<span class="text-red">ไม่เปิดใช้งาน</span>
+                    			<?php $new_status='O'; } ?>
+                    			<?php if($contentInfo['status']=='O'){ ?>
+                    			<span class="text-green">เปิดใช้งาน</span>
+                    			<?php } ?>
+                    			&nbsp;&nbsp;
+                    			<button type="button" class="btn btn-flat btn-default btn-xs" data-id="<?=$contentInfo['vat_id']?>" data-status="<?=$new_status?>" onclick="setVatStatus(this);" title="แก้ไข"><i class="fa fa-refresh"></i></button>
+			              </label> 
+	                    </div>
+	                      
+	                    
+                    </div>
+                 </form>   
+			</div>
+		</div>
+	</div>
+	</div>
+</section>				

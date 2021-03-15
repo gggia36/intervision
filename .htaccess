@@ -1,0 +1,23 @@
+#Options +SymLinksIfOwnerMatch
+
+RewriteEngine On
+RewriteBase /
+ RewriteCond %{HTTPS} !=on
+ RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
+
+# Remove trailing slashes
+#RewriteRule ^(.*)/$ /$1 [L,R=301]
+# Force valid language in path
+#RewriteRule ^(?!(en|th)/?)[^/]*(/|^)((news|services|about_us)/.*) /en/$3 [R=301,L]
+RewriteRule ^$ /en [L,R=301]
+RewriteRule ^(?!(en|th)/?)(($|news|services|about_us).*) /en/$2 [L,R=301] 
+
+## never rewrite for existing files, directories and links
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteCond %{REQUEST_FILENAME} !\.(gif|jp?g|png|js|css|swf|php|ico)$
+
+
+RewriteRule .* index.php [L,QSA]
+

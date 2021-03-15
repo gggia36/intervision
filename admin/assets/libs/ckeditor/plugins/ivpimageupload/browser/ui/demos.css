@@ -1,0 +1,54 @@
+body {
+	font-size: 62.5%;
+	font-family: "Trebuchet MS", "Arial", "Helvetica", "Verdana", "sans-serif";
+}
+a img{
+	border: none;
+}
+
+table {
+	font-size: 1em;
+}
+
+.demo-description {
+	clear: both;
+	padding: 12px;
+	font-size: 1.3em;
+	line-height: 1.4em;
+}
+
+.ui-draggable, .ui-droppable {
+	background-position: top;
+}
+#folder_op{
+	font-size: 15px;
+	font-family: "Trebuchet MS", "Arial", "Helvetica", "Verdana", "sans-serif";
+	margin-left: 10px;
+	margin-top: 20px;
+	position: relative;
+	float: left;
+	border: 1px solid #969c99;
+	width: 200px;
+	min-height: 300px;
+}
+#folder_op li{
+	list-style: none;
+	line-height: 24px;
+}
+#bd-img{
+	font-size: 15px;
+	font-family: "Trebuchet MS", "Arial", "Helvetica", "Verdana", "sans-serif";
+	margin-left: 5px;
+	margin-top: 20px;
+	position: relative;
+	float: left;
+	border: 1px solid #969c99;
+	width: 700px;
+	min-height: 300px;
+	padding: 10px 10px 10px 10px;
+	margin-bottom: 20px;
+}
+#blog-h{
+	border-bottom: 1px solid #969c99;
+	padding-bottom: 5px;
+}

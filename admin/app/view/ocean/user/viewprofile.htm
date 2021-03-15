@@ -1,0 +1,128 @@
+<style>
+	.form-group .control-label {
+		text-align: left;
+	}
+	.box-body {padding-left: 10%;}
+</style>
+
+<section class="content-header">
+  <h1>
+    Profile
+    <small>Profile Management</small>
+  </h1>  
+</section>
+
+        <!-- Main content -->
+<section class="content" >
+	<div class="row">
+       <div class="col-md-12">
+		  <div class="box box-warning">
+			<div class="box-header with-border">
+			
+			  <h3 class="box-title">My Profile</h3>
+			 
+			</div>
+			 <form class="form-horizontal" id="createFrm" name="createFrm">
+			 
+			 <input type="hidden" name="mode" value="profile"/>
+			 <input type="hidden" name="user_id" value="<?=$memberinfomation['id']?>"/>
+			 <input type="hidden" name="old_thumb" value="<?=$memberinfomation['user_thumb']?>"/>
+			
+			<div class="box-body">
+			   
+                  
+                    <div class="form-group">
+                      <label for="user_name" class="col-sm-2 control-label">User ID</label>
+                      <div class="col-sm-5">
+                        <h2>CMS<?=str_pad($memberinfomation['id'],4,'0',STR_PAD_LEFT)?></h2>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">Image</label>
+                      <?php if(!empty($memberinfomation['user_thumb'])){ ?>
+                      <div class="col-sm-2">
+                      	<img class="img-responsive" src="<?=$BASEURL?>/uploads/userthumbnail/<?=$memberinfomation['user_thumb']?>"/>
+                      </div>
+                      <?php } ?>
+                      
+                      
+                    </div>
+                    <div class="form-group">
+                      <label for="user_name" class="col-sm-2 control-label">First Name - Last Name</label>
+                      <div class="col-sm-5">
+                        <h4><?=$memberinfomation['user_name']?></h4>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="user_nickname" class="col-sm-2 control-label">Nick Name</label>
+                      <div class="col-sm-5">
+                        <h4><?=$memberinfomation['user_nickname']?></h4>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="user_email" class="col-sm-2 control-label">Email</label>
+                      <div class="col-sm-5">
+                        <h4><?=$memberinfomation['user_email']?></h4>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="user_phone_number" class="col-sm-2 control-label">Phone Number</label>
+                      <div class="col-sm-5">
+                        <h4><?=$memberinfomation['user_phone_number']?></h4>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="birthdate" class="col-sm-2 control-label">Birth Date</label>
+                      <div class="col-sm-5">
+                       <h4> 
+	                      <?php
+	                      	$bdate = date('d-m-Y', strtotime($memberinfomation['user_birthdate']));
+	                      	if($memberinfomation['user_birthdate']==''){$bdate='';}
+	                       ?>
+	                      <?=$bdate?>
+	                    </h4>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="startdate" class="col-sm-2 control-label">Start Date</label>
+                      <div class="col-sm-5">
+                        
+	                     <h4> 
+	                      <?php
+	                      	$sdate = date('d-m-Y', strtotime($memberinfomation['user_start_date']));
+	                      	if($memberinfomation['user_start_date']==''){$sdate='';}
+	                       ?>
+	                      <?=$sdate?>
+	                    </h4>
+                      </div>
+                    </div>
+                    
+                   
+                    
+                    
+                    <div class="form-group">
+                      <label for="user_username" class="col-sm-2 control-label">Username</label>
+                      <div class="col-sm-5">
+                        
+                        <h4><?=$memberinfomation['user_username']?></h4>
+                      </div>
+                    </div>
+                
+			</div>
+			<div class="box-footer" style="margin-left: 10%">
+					<?php if($tab=='profile'){ ?>
+					<a href="#/user/editprofile/" class="btn btn-primary" >Edit Profile</a>
+					<a href="#/dashboard/" class="btn btn-success pull-right">Back To Dashboard</a>
+					<?php }else{ ?>
+					<a href="#/user/userlist/" class="btn btn-success pull-right">Back To List</a>
+                    <?php } ?>
+                    
+            </div><!-- /.box-footer -->
+            </form>
+			</div>
+		</div>
+	</div>
+          
+</section>
+

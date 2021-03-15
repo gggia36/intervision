@@ -1,0 +1,134 @@
+
+<section class="content-header">
+  <h1>
+    รายการ Social
+    <small>จัดการรายการ Social</small>
+  </h1>
+</section>
+
+        <!-- Main content -->
+
+
+<section class="content" >
+	<div class="row">
+       <div class="col-md-12">
+		  <div class="box box-warning">
+			<div class="box-header with-border">
+			<?php if(!is_array($contentInfo)){ ?>
+			  <h3 class="box-title">สร้างเนื้อหาใหม่</h3>
+			 <?php }else{ ?>
+			 	<h3 class="box-title">แก้ไขเนื้อหา</h3>
+			 <?php } ?>
+			</div>
+			 <form class="form-horizontal" id="contFrm" name="contFrm">
+			 <?php if(!is_array($contentInfo)){ ?>
+			 <input type="hidden" name="mode" value="createsociallist"/>
+			 <input type="hidden" name="social_id" id="social_id" value="0"/>
+			 <?php }else{ ?>
+			 <input type="hidden" name="mode" value="editsociallist"/>
+			 <input type="hidden" name="social_id" value="<?=$contentInfo['social_id']?>"/>
+			 <?php } ?>
+			<div class="box-body">
+
+				<div class="col-md-12">
+		          <!-- Custom Tabs -->
+		          <div class="nav-tabs-custom">
+		            <ul class="nav nav-tabs">
+		            <?php $l_c=1; foreach($langlist as $langL){ ?>
+		              <li <?php if($l_c=='1'){ ?> class="active"<?php } ?>><a href="#tab_<?=$langL['lang_prefix']?>" data-toggle="tab" aria-expanded="true"><?=$langL['lang_name']?></a></li>
+		            <?php $l_c++; } ?>
+		            </ul>
+		            <div class="tab-content">
+		            <?php $l_c=1; foreach($langlist as $langL){ ?>
+		              <div class="tab-pane <?php if($l_c=='1'){ ?>active<?php } ?>" id="tab_<?=$langL['lang_prefix']?>">
+						<div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label">ชื่อ Social</label>
+	                      <div class="col-sm-4">
+	                        <input type="text" class="form-control" id="social_name_<?=$langL['lang_prefix']?>" name="social_name_<?=$langL['lang_prefix']?>" placeholder="ชื่อ Social"  value="<?=$contentInfo['social_name_'.$langL['lang_prefix']]?>" >
+	                      </div>
+	                    </div>
+	                    <div class="form-group">
+	                      <label for="exp_title" class="col-sm-3 control-label">icon</label>
+	                      <div class="col-sm-7">
+	                      <div class="input-group">
+	                      <span class="input-group-addon"><i id="icon-display_<?=$langL['lang_prefix']?>" class="fa fa-<?=$contentInfo['icon_'.$langL['lang_prefix']]?>"></i></span>
+	                      <input type="text" class="form-control" id="icon_<?=$langL['lang_prefix']?>" name="icon_<?=$langL['lang_prefix']?>" placeholder="icon"  value="<?=$contentInfo['icon_'.$langL['lang_prefix']]?>" style="width: 150px;" onfocus="iconDown('<?=$langL['lang_prefix']?>');" onblur="iconUp('<?=$langL['lang_prefix']?>');" >
+	                      	
+	                      </div>
+	                      <div class="clearfix"></div>
+	                      <label id="icon-list-<?=$langL['lang_prefix']?>" class=" control-label" style="font-size: 20px !important;display: none;">
+	                      	<div class="col-sm-4" style="cursor: pointer;" onclick="selectIcon('facebook','<?=$langL['lang_prefix']?>');">
+	                        	<span class="fa fa-facebook"></span>
+	                        </div>
+	                        <div class="col-sm-4" style="cursor: pointer;" onclick="selectIcon('twitter','<?=$langL['lang_prefix']?>');">
+	                        	<span class="fa fa-twitter"></span>
+	                        </div>
+	                        <div class="col-sm-4" style="cursor: pointer;" onclick="selectIcon('google-plus','<?=$langL['lang_prefix']?>');">
+	                        	<span class="fa fa-google-plus"></span>
+	                        </div>
+	                        <div class="clearfix" ></div>
+	                        <div class="col-sm-4" style="cursor: pointer;" onclick="selectIcon('instagram','<?=$langL['lang_prefix']?>');">
+	                        	<span class="fa fa-instagram"></span>
+	                        </div>
+	                        <div class="col-sm-4" style="cursor: pointer;" onclick="selectIcon('apple','<?=$langL['lang_prefix']?>');">
+	                        	<span class="fa fa-apple"></span>
+	                        </div>
+	                        <div class="col-sm-4" style="cursor: pointer;" onclick="selectIcon('android','<?=$langL['lang_prefix']?>');">
+	                        	<span class="fa fa-android"></span>
+	                        </div>
+	                        <div class="clearfix"></div>
+	                        <div class="col-sm-4" style="cursor: pointer;" onclick="selectIcon('bitbucket','<?=$langL['lang_prefix']?>');">
+	                        	<span class="fa fa-bitbucket"></span>
+	                        </div>
+	                        <div class="col-sm-4" style="cursor: pointer;" onclick="selectIcon('youtube-play','<?=$langL['lang_prefix']?>');">
+	                        	<span class="fa fa-youtube-play"></span>
+	                        </div>
+	                        <div class="col-sm-4" style="cursor: pointer;" onclick="selectIcon('envelope-o','<?=$langL['lang_prefix']?>');">
+	                        	<span class="fa fa-envelope-o"></span>
+	                        </div>
+	                        </label>
+	                      </div>
+	                    </div>
+						<div class="form-group">
+	                      <label for="exp_desc" class="col-sm-3 control-label">ลิงค์</label>
+	                      <div class="col-sm-7">
+							<div class="input-group">
+							<span class="input-group-addon">https:</span>
+	                        <input type="text" class="form-control " id="social_link_<?=$langL['lang_prefix']?>" name="social_link_<?=$langL['lang_prefix']?>" placeholder="ลิงค์" value="<?=$contentInfo['social_link_'.$langL['lang_prefix']]?>">
+	                        	
+	                        </div>
+	                        <small style="color: #AAA;">Ex. :: <strong>www.facebook.com/apara</strong></small>
+	                      </div>
+	                    </div>
+		              </div>
+		              <?php $l_c++; } ?>
+		            </div>
+		          </div>
+		        </div>
+		     
+
+            </div>
+
+            <div class="box-footer" style="">
+
+			<a href="#/setting/social/" class="btn btn-success pull-right"><?=$lang->_backtolist?></a>
+
+            <button type="reset" class="btn btn-default"><?=$lang->_reset?></button>
+            <button type="button" class="btn btn-primary" id="" onclick="saveSocialList();"> <i class="fa fa-save"></i> <?=$lang->_save?></button>
+
+            </div><!-- /.box-footer -->
+ 			</form>
+			</div>
+
+
+			</div>
+		</div>
+
+
+</section>
+
+<script>
+
+      callEditor('.summernote');
+
+</script>
